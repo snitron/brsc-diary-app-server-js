@@ -1,3 +1,15 @@
+function parseId(string) {
+    data = String(string).substring(String(string).indexOf('?') + 1).split('&');
+
+    return {
+        "rooId": data[0].substring(6),
+        "instituteId": data[1].substring(12),
+        "departmentId": data[2].substring(13),
+        "userId": data[3].substring(8)
+    }
+}
+
+
 var express = require('express');
 var router = express.Router();
 
@@ -49,14 +61,4 @@ router.get('/', function (req, res, next) {
 
 module.exports = router;
 
-function parseId(string) {
-    data = String(string).substring(String(string).indexOf('?') + 1).split('&');
-
-    return {
-        "rooId": data[0].substring(6),
-        "instituteId": data[1].substring(12),
-        "departmentId": data[2].substring(13),
-        "userId": data[3].substring(8)
-    }
-}
 
