@@ -11,8 +11,9 @@ router.get('/', function(req, res, next) {
     let nightmare = Nightmare({ show: true });
 
     nightmare
-        .goto('https://elschool.ru/')
+        .goto('https://elschool.ru/Logon/Index')
         .evaluate(() => {
+            res.send('yes');
             document.getElementById('login').value = login;
             document.getElementById('password').value = password;
             document.getElementById('sub-btn').click();
