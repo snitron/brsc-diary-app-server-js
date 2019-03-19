@@ -10,6 +10,9 @@ router.get('/', function(req, res, next) {
 
     horseman
         .userAgent('Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0')
+        .on('resourceError', function(err) {
+            console.log(err.message)
+        })
         .open('https://elschool.ru/')
         .type('#login', login)
         .type('#password', password)
