@@ -15,9 +15,7 @@ router.get('/', function (req, res, next) {
         await page.type('#password', password);
         await page.click('#sub-btn');
 
-        await page.waitForNavigation();
-
-        res.send(page.url());
+        await page.waitForNavigation().then(() => res.send(page.url()));
 
         await browser.close()
     })();
