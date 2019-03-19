@@ -12,8 +12,7 @@
     "http-errors": "~1.6.2",
     "jquery": "^3.3.1",
     "morgan": "~1.9.0",
-    "node-horseman": "^3.3.0",
-    "phantomjs2": "^2.2.0",
-    "pug": "2.0.0-beta11"
+    "pug": "2.0.0-beta11",
+    "zombie": "^6.1.4"
   }
 }
