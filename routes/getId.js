@@ -26,7 +26,8 @@ router.get('/', function (req, res, next) {
                     //it is parent
                     var child_ids = [];
                     $('a.btn.btn-sm.btn-primary[role="button"][href!="/user/diary"]').each(function () {
-                        child_ids.push(parseId($(this).args.href));
+                        var elem = parseId($(this).args.href);
+                        child_ids.push(elem);
 
                     });
                     user_id = null;
