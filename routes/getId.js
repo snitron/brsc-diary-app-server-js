@@ -16,6 +16,7 @@ router.get('/', function(req, res, next) {
         .open('https://elschool.ru/')
         .type('#login', login)
         .type('#password', password)
+        .wait(3000)
         .click('#sub-btn')
         .waitForNextPage({timeout: 30000})
         .do(() => {
