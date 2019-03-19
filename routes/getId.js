@@ -22,10 +22,10 @@ router.get('/', function (req, res, next) {
         const user = await page.evaluate(() => {
             try {
 
-                if ($('a.btn.btn-sm.btn-primary[role="button"][href!="/user/diary"]').size !== 0) {
+                if ($('a.btn.btn-sm.btn-primary').size !== 0) {
                     //it is parent
                     var child_ids = [];
-                    $('a.btn.btn-sm.btn-primary[role="button"][href!="/user/diary"]').each(function () {
+                    $('a.btn.btn-sm.btn-primary').each(function () {
                         var elem = $(this).args.href;
                         data = String(elem).substring(String(elem).indexOf('?') + 1).split('&');
                         child_ids.push({
