@@ -7,8 +7,8 @@ router.get('/', function(req, res, next) {
     var password = req.query.password;
     var version = req.query.version;
 
-    const Nightmare = require('nightmare');
-    const nightmare = Nightmare({ show: true });
+    let Nightmare = require('nightmare');
+    let nightmare = Nightmare({ show: true });
 
     nightmare
         .goto('https://elschool.ru/')
@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
             document.getElementById('login').value = login;
             document.getElementById('password').value = password;
             document.getElementById('sub-btn').click();
-        }).wait().evaluate(() => res.send(document.url));
+        }).wait().end(() => res.send(document.url));
 
 
     //res.send(id)
