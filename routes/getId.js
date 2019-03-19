@@ -1,21 +1,26 @@
 var express = require('express');
 var router = express.Router();
 
-const browser = require('zombie');
-
 /* GET users listing. */
 router.get('/', function (req, res, next) {
     var login = req.query.login;
     var password = req.query.password;
+    const puppeteer = require('puppeteer');
 
-    browser.visit('https://elschool.ru', function () {
-        browser.fill('#login', login);
-        browser.fill('#password', password);
-        browser.click('#stb-btn', function () {
-            res.send(browser.location.href);
-        });
+    (async () => {
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
+        await page.goto('https://elschool.ru/');
+        await page.type('#login', login);
+        await page.type('#password', password);
+        await page.click('#stb-btn');
 
-    });
+        await page.waitForNavigation();
+
+        res.send(page.url());
+
+        await browser.close();
+    })();
 });
 
 module.exports = router;
