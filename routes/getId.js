@@ -3,6 +3,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
+    res.send('yes');
     var login = req.query.login;
     var password = req.query.password;
     var version = req.query.version;
@@ -12,6 +13,7 @@ router.get('/', function(req, res, next) {
 
     nightmare
         .goto('https://elschool.ru/Logon/Index')
+        .then()
         .evaluate(() => {
             res.send('yes');
             document.getElementById('login').value = login;
