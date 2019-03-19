@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
             document.getElementById('login').value = login;
             document.getElementById('password').value = password;
             document.getElementById('sub-btn').click();
-        }).wait().end(() => res.send(document.url));
+        }).end(() => res.send(document.url));
 
 
     //res.send(id)
