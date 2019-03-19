@@ -1,15 +1,3 @@
-function parseId(string) {
-    data = String(string).substring(String(string).indexOf('?') + 1).split('&');
-
-    return {
-        "rooId": data[0].substring(6),
-        "instituteId": data[1].substring(12),
-        "departmentId": data[2].substring(13),
-        "userId": data[3].substring(8)
-    }
-}
-
-
 var express = require('express');
 var router = express.Router();
 
@@ -38,8 +26,14 @@ router.get('/', function (req, res, next) {
                     //it is parent
                     var child_ids = [];
                     $('a.btn.btn-sm.btn-primary[role="button"][href!="/user/diary"]').each(function () {
-                        var elem = parseId($(this).args.href);
-                        child_ids.push(elem);
+                        var elem = $(this).args.href;
+                        data = String(elem).substring(String(elem).indexOf('?') + 1).split('&');
+                        child_ids.push({
+                            "rooId": data[0].substring(6),
+                            "instituteId": data[1].substring(12),
+                            "departmentId": data[2].substring(13),
+                            "userId": data[3].substring(8)
+                        });
 
                     });
                     user_id = null;
