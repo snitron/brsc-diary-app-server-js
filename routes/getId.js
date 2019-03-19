@@ -26,6 +26,8 @@ module.exports = router;
 
 
 class UserModel{
-    child_model = Array();
-    id = "";
+    constructor(child_ids, id){
+        this.child_ids = child_ids;
+        this.id = id;
+    }
 }
