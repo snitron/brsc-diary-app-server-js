@@ -8,18 +8,18 @@ router.get('/', function (req, res, next) {
     const puppeteer = require('puppeteer');
 
     (async () => {
-        const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+        const browser = await puppeteer.launch();
         const page = await browser.newPage();
         await page.goto('https://elschool.ru/');
         await page.type('#login', login);
         await page.type('#password', password);
-        await page.click('#stb-btn');
+        await page.click('#sub-btn');
 
         await page.waitForNavigation();
 
         res.send(page.url());
 
-        await browser.close();
+        await browser.close()
     })();
 });
 
