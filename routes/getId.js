@@ -15,11 +15,11 @@ router.get('/', function(req, res, next) {
         .type('#password', password)
         .click('#sub-btn')
         .waitForNextPage({timeout: 30000})
-        .evaluate(() => {
+        .do(() => {
             res.send(url);
         })
         .log()
-        .close()
+        .close();
 });
 
 module.exports = router;
