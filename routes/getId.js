@@ -1,27 +1,26 @@
 var express = require('express');
 var router = express.Router();
-let Nightmare = require('nightmare');
-let nightmare = Nightmare({ show: true });
+var Horseman = require('node-horseman');
+var horseman = new Horseman();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
     res.send('yes');
     var login = req.query.login;
     var password = req.query.password;
-   // var version = req.query.version;
-    res.send('yes');
-    nightmare
-        .goto('https://elschool.ru/Logon/Index')
-        .then()
-        .evaluate(() => {
-            res.send('yes');
-            document.getElementById('login').value = login;
-            document.getElementById('password').value = password;
-            document.getElementById('sub-btn').click();
-        }).end(() => res.send(document.url));
 
-    res.send('yes');
-    //res.send(id)
+    horseman
+        .userAgent('Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0')
+        .open('https://elschool.ru/')
+        .type('#login', login)
+        .type('#password', password)
+        .click('#sub-btn')
+        .waitForNextPage({timeout: 30000})
+        .evaluate(() => {
+            res.send(url);
+        })
+        .log()
+        .close()
 });
 
 module.exports = router;
