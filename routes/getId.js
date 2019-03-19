@@ -5,7 +5,6 @@ var horseman = new Horseman();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    res.send('yes');
     var login = req.query.login;
     var password = req.query.password;
 
