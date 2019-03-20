@@ -10,20 +10,19 @@ router.get('/', function (req, res, next) {
     var instituteId = req.query.instituteId;
     var departmentId = req.query.depatmentId;
 
-    const puppeteer = require('puppeteer');
+           const puppeteer = require('puppeteer');
 
-    (async () => {
-        const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
-        const page = await browser.newPage();
-        await page.goto('https://elschool.ru/', {waitUntil: 'load', timeout: 0});
-        await page.type('#login', login);
-        await page.type('#password', password);
-        await page.click('#sub-btn');
-        await page.waitForNavigation().catch(() => console.log("catched"));
-        await page.goto('https://elschool.ru/users/diaries/details?rooId=' + rooId
-            + "&instituteId=" + instituteId + "&departmentId=" + departmentId + "&pupilId=" + id + "&year=2018",  { waitUntil: 'networkidle2' });
-        await page.waitForSelector('tr[lesson="2"]').catch(() => console.log("catched"));
-        await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
+        (async () => {
+            const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+            const page = await browser.newPage();
+            await page.goto('https://elschool.ru/', {waitUntil: 'load', timeout: 0});
+            await page.type('#login', login);
+            await page.type('#password', password);
+            await page.click('#sub-btn');
+            await page.waitForNavigation().catch(() => console.log("catched"));
+            await page.goto('https://elschool.ru/users/diaries/details?rooId=' + rooId
+                + "&instituteId=" + instituteId + "&departmentId=" + departmentId + "&pupilId=" + id + "&year=2018",  { waitUntil: 'networkidle2' });
+            await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
 
 
         const mainData = await page.evaluate(() => {
