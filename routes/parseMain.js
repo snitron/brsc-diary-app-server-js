@@ -45,7 +45,7 @@ router.get('/', function (req, res, next) {
                     dayShedule.hrefHwNames = [[]];
 
 
-                    var trS = elements.eq(i).find('tr');
+                    var trS = elements.eq(i).find('tbody').first().find('tr');
 
                     for(var j = 0; j < trS.length; j += 2){
                         if(trS.eq(j).find('td').eq(3).text() === 'Нет занятий'){
