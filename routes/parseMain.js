@@ -15,6 +15,7 @@ router.get('/', function (req, res, next) {
         (async () => {
             const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
             const page = await browser.newPage();
+            await page.setViewport(1920, 1080);
             await page.goto('https://elschool.ru/', {waitUntil: 'load', timeout: 0});
             await page.type('#login', login);
             await page.type('#password', password);
