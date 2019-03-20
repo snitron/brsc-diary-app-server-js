@@ -16,7 +16,7 @@ router.get('/', function (req, res, next) {
             await page.click('#sub-btn');
             await page.waitForNavigation().catch();
             await page.goto('https://elschool.ru/privateoffice');
-            await page.waitForNavigation().catch();
+          //  await page.waitForNavigation().catch();
             await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
 
             const user = await page.evaluate(() => {
