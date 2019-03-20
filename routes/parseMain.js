@@ -48,13 +48,13 @@ router.get('/', function (req, res, next) {
                     var trS = elements.eq(i).find('tr');
 
                     for(var j = 0; j < trS.length; j += 2){
-                        if(trS[j].find('td').eq(3).text() === 'Нет занятий'){
+                        if(trS.eq(j).find('td').eq(3).text() === 'Нет занятий'){
                             dayShedule.count = 0;
                             dayShedule.isWeekend = true;
                             break;
                         }
 
-                        var tdS = tr.find('td');
+                        var tdS = trS.eq(j).find('td');
                         dayShedule.lessons[j] = tdS.eq(2).text().trim();
                         dayShedule.homeworks[j] = tdS.eq(3).find('div').not('.diary-homework-list').first().text().trim();
                         dayShedule.marks[j] = trS.eq(j).find('td.diary-lesson-mark-cell').first().text().trim();
