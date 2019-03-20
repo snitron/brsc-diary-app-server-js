@@ -14,7 +14,8 @@ router.get('/', function (req, res, next) {
 
         (async () => {
             const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
-    const page = await browser.newPage();
+            const page = await browser.newPage();
+            await page.setUserAgent('Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36');
             await page.goto('https://elschool.ru/', {waitUntil: 'load', timeout: 0});
             await page.type('#login', login);
             await page.type('#password', password);
@@ -22,7 +23,8 @@ router.get('/', function (req, res, next) {
             await page.waitForNavigation().catch(() => console.log("catched"));
             await page.goto('https://elschool.ru/users/diaries/details?rooId=' + rooId
                 + "&instituteId=" + instituteId + "&departmentId=" + departmentId + "&pupilId=" + id + "&year=2018&week=12",  { waitUntil: 'networkidle' });
-            await page.waitFor(5000);
+            await page.waitFor(5000).then();
+
             await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
 
 
