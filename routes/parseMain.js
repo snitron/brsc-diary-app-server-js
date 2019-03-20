@@ -21,10 +21,12 @@ router.get('/', function (req, res, next) {
         await page.click('#sub-btn');
         await page.waitForNavigation().catch(() => console.log("catched"));
         await page.goto('https://elschool.ru/users/diaries/details?rooId=' + rooId
-            + "instituteId=" + instituteId + "&departmentId=" + departmentId + "&pupilId=" + id, {waitUntil: 'load', timeout: 0});
+            + "&instituteId=" + instituteId + "&departmentId=" + departmentId + "&pupilId=" + id, {waitUntil: 'load', timeout: 0});
         await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
 
+
         const mainData = await page.evaluate(() => {
+            res.send(document.documentElement.outerHTML);
             try{
                 var elements = $('table.table-bordered.DiaryTable.d-none.d-md-table:not([lesson])');
                 var dayNames = $('h3.weekDayDiary');
