@@ -23,7 +23,8 @@ router.get('/', function (req, res, next) {
             await page.goto('https://elschool.ru/users/diaries/details?rooId=' + rooId
                 + "&instituteId=" + instituteId + "&departmentId=" + departmentId + "&pupilId=" + id + "&year=2018",  { waitUntil: 'networkidle2' });
             await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
-
+            const watchDog = page.waitForFunction('window.status === "ready"');
+            await watchDog;
 
         const mainData = await page.evaluate(() => {
             //res.send(document.documentElement.outerHTML);
