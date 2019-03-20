@@ -27,7 +27,7 @@ router.get('/', function (req, res, next) {
 
         const mainData = await page.evaluate(() => {
             //res.send(document.documentElement.outerHTML);
-            try{
+            try{/*
                 var elements = $('table.table-bordered.DiaryTable.d-none.d-md-table:not([lesson])');
                 var dayNames = $('h3.weekDayDiary');
 
@@ -76,13 +76,15 @@ router.get('/', function (req, res, next) {
                     days.push(dayShedule);
                 }
 
-                return days;
+                return days;*/
+
+                return document.documentElement.outerHTML;
             } catch (e) {
                 return e.toString();
             }
         });
 
-        res.send(JSON.stringify(mainData));
+        res.send(mainData);
 
         await browser.close();
     })();
