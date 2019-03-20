@@ -55,10 +55,12 @@ router.get('/', function (req, res, next) {
                         }
 
                         var tdS = trS.eq(j).find('td');
-                        dayShedule.lessons[j] = tdS.eq(2).text().trim();
-                        dayShedule.homeworks[j] = tdS.eq(3).find('div').not('.diary-homework-list').first().text().trim();
-                        dayShedule.marks[j] = trS.eq(j).find('td.diary-lesson-mark-cell').first().text().trim();
-                        dayShedule.teacherComment[j] = trS.eq(j).find('td.diary-teacher-comment').first().text().trim();
+                        dayShedule.lessons[j] = tdS.eq(2).text();
+                        dayShedule.homeworks[j] = tdS.eq(3).find('div').not('.diary-homework-list').first().text();
+                        dayShedule.marks[j] = trS.eq(j).find('td.diary-lesson-mark-cell').first().text();
+                        dayShedule.teacherComment[j] = trS.eq(j).find('td.diary-teacher-comment').first().text();
+
+                        console.log(dayShedule.lessons[j], dayShedule.homeworks[j], dayShedule.marks[j], dayShedule.teacherComment[j]);
 
                         if(tdS.eq(3).find('a.HomeWorkFile').length !== 0){
                             var hrefsTd = tdS.eq(3).find('a.HomeWorkFile');
