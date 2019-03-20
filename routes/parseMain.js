@@ -26,7 +26,7 @@ router.get('/', function (req, res, next) {
 
 
         const mainData = await page.evaluate(() => {
-            res.send(document.documentElement.outerHTML);
+            //res.send(document.documentElement.outerHTML);
             try{
                 var elements = $('table.table-bordered.DiaryTable.d-none.d-md-table:not([lesson])');
                 var dayNames = $('h3.weekDayDiary');
