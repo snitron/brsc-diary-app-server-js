@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
     var id = req.query.id;
     var login = req.query.login;
     var password = req.query.password;
@@ -10,8 +10,77 @@ router.get('/', function(req, res, next) {
     var instituteId = req.query.instituteId;
     var departmentId = req.query.depatmentId;
 
+    const puppeteer = require('puppeteer');
 
-    res.send(id)
+    (async () => {
+        const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+        const page = await browser.newPage();
+        await page.goto('https://elschool.ru/', {waitUntil: 'load', timeout: 0});
+        await page.type('#login', login);
+        await page.type('#password', password);
+        await page.click('#sub-btn');
+        await page.waitForNavigation().catch(() => console.log("catched"));
+        await page.goto('https://elschool.ru/users/diaries/details?rooId=' + rooId
+            + "instituteId=" + instituteId + "&departmentId=" + departmentId + "&pupilId=" + id, {waitUntil: 'load', timeout: 0});
+        await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
+
+        const mainData = await page.evaluate(() => {
+            try{
+                var elements = $('table.table-bordered.DiaryTable.d-none.d-md-table:not([lesson])');
+                var dayNames = $('h3.weekDayDiary');
+
+                var days = [];
+                for(var i = 0; i < elements.length; i++){
+                    var dayShedule = {};
+                    dayShedule.lessons = [];
+                    dayShedule.count = 0;
+                    dayShedule.marks = [];
+                    dayShedule.homeworks = [];
+                    dayShedule.isWeekend = false;
+                    dayShedule.dayName = "";
+                    dayShedule.teacherComment = [];
+                    dayShedule.hrefHw = [[]];
+                    dayShedule.hrefHwNames = [[]];
+
+
+                    var trS = elements.eq(i).find('tr');
+
+                    for(var j = 0; j < trS.length; j += 2){
+                        if(trS[j].find('td').eq(3).text() === 'Нет занятий'){
+                            dayShedule.count = 0;
+                            dayShedule.isWeekend = true;
+                            break;
+                        }
+
+                        var tdS = tr.find('td');
+                        dayShedule.lessons[j] = tdS.eq(2).text().trim();
+                        dayShedule.homeworks[j] = tdS.eq(3).find('div').not('.diary-homework-list').first().text().trim();
+                        dayShedule.marks[j] = trS[i].find('td.diary-lesson-mark-cell').first().text().trim();
+                        dayShedule.teacherComment[j] = trS[i].find('td.diary-teacher-comment').first().text().trim();
+
+                        if(tdS.eq(3).find('a.HomeWorkFile').length !== 0){
+                            var hrefsTd = tdS.eq(3).find('a.HomeWorkFile');
+                            for (var k = 0; k < hrefsTd.length; k++){
+                                dayShedule.hrefHw[j][k] = hrefsTd.eq(i).attr('href');
+                                dayShedule.hrefHwNames[j][k] = hrefsTd.eq(i).text().trim();
+                            }
+                        }
+
+                        dayShedule.isWeekend = false;
+                    }
+                    dayShedule.dayName = dayNames.eq(i).text().trim();
+                    days.push(dayShedule);
+                }
+
+                return days;
+            } catch (e) {
+                return e.toString();
+            }
+        });
+
+        res.send(JSON.stringify(mainData));
+
+    })();
 });
 
 module.exports = router;

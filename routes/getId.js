@@ -38,7 +38,7 @@ router.get('/', function (req, res, next) {
                             });
                         }
                         let isParent = true;
-                        return [isParent, child_ids];
+                        return {isParent, child_ids};
                     } else {
                         //it is not parent
                         return "CHILD";
@@ -86,7 +86,7 @@ router.get('/', function (req, res, next) {
                             "userId": data[3].substring(8)
                         });
                         let isParent = false;
-                        return [isParent, child_ids];
+                        return {isParent, child_ids};
                     } catch (e) {
                         return e.toString();
                     }
@@ -98,8 +98,7 @@ router.get('/', function (req, res, next) {
             await browser.close()
         }
     )();
-})
-;
+});
 
 module.exports = router;
 
