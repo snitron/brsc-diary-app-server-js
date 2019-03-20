@@ -23,7 +23,7 @@ router.get('/', function (req, res, next) {
                 try {
                     var buttons = $('a.btn.btn-sm.btn-primary');
 
-                    if (buttons.length !== 0) {
+                    if (buttons.length !== 1) {
                         //it is parent
 
                         var child_ids = [];
