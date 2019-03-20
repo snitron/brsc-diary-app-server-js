@@ -20,9 +20,9 @@ router.get('/', function (req, res, next) {
             await page.type('#password', password);
             await page.click('#sub-btn');
             await page.waitForNavigation().catch(() => console.log("catched"));
-            await page.waitFor(5000);
             await page.goto('https://elschool.ru/users/diaries/details?rooId=' + rooId
                 + "&instituteId=" + instituteId + "&departmentId=" + departmentId + "&pupilId=" + id + "&year=2018",  { waitUntil: 'networkidle2' });
+            await page.waitFor(5000);
             await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
 
 
