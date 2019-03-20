@@ -78,13 +78,13 @@ router.get('/', function (req, res, next) {
 
                 return days;
 
-                return document.documentElement.outerHTML;
+                //return document.documentElement.outerHTML;
             } catch (e) {
                 return e.toString();
             }
         });
 
-        res.send(mainData);
+        res.send(JSON.stringify(mainData));
 
         await browser.close();
     })();
