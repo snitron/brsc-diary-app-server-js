@@ -16,7 +16,7 @@ router.get('/', function (req, res, next) {
             await page.click('#sub-btn');
             await page.waitForNavigation().catch();
             await page.goto('https://elschool.ru/privateoffice');
-          //  await page.waitForNavigation().catch();
+            //  await page.waitForNavigation().catch();
             await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
 
             const user = await page.evaluate(() => {
@@ -37,12 +37,11 @@ router.get('/', function (req, res, next) {
                                 "userId": data[3].substring(8)
                             });
                         }
-                        user_id = null;
-
+                        let isParent = true;
+                        return [isParent, child_ids];
                     } else {
-                        var child_ids = null;
-                        var user_id = $('p.col-lg-7.col-md-8.col-sm-8.col-6').first().text();
-
+                        //it is not parent
+                        return "CHILD";
 
                         /*
                         var buttons = document.getElementsByClassName('a.btn.btn-sm.btn-primary');
@@ -66,14 +65,36 @@ router.get('/', function (req, res, next) {
                             var user_id = document.getElementsByClassName('p.col-lg-7.col-md-8.col-sm-8.col-6')[0].text();
                         }*/
                     }
-                    return [child_ids, user_id];
+
                 } catch
                     (e) {
                     return e.toString();
                 }
             });
 
-            res.send(JSON.stringify(user));
+            if (user === "CHILD") {
+                await page.goto('https://elschool.ru/users/diaries/');
+                const act_data = await page.evaluate(() => {
+                    try {
+                        var elem = window.location.href;
+                        var child_ids = [];
+                        data = String(elem).substring(String(elem).indexOf('?') + 1).split('&');
+                        child_ids.push({
+                            "rooId": data[0].substring(6),
+                            "instituteId": data[1].substring(12),
+                            "departmentId": data[2].substring(13),
+                            "userId": data[3].substring(8)
+                        });
+                        let isParent = false;
+                        return [isParent, child_ids];
+                    } catch (e) {
+                        return e.toString();
+                    }
+                });
+                res.send(JSON.stringify(act_data));
+            } else {
+                res.send(JSON.stringify(user));
+            }
             await browser.close()
         }
     )();
