@@ -80,6 +80,7 @@ router.get('/', function (req, res, next) {
 
         res.send(JSON.stringify(mainData));
 
+        await browser.close();
     })();
 });
 
