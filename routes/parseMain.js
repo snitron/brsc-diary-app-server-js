@@ -21,13 +21,13 @@ router.get('/', function (req, res, next) {
         await page.click('#sub-btn');
         await page.waitForNavigation().catch(() => console.log("catched"));
         await page.goto('https://elschool.ru/users/diaries/details?rooId=' + rooId
-            + "&instituteId=" + instituteId + "&departmentId=" + departmentId + "&pupilId=" + id,  { waitUntil : 'networkidle0' });
+            + "&instituteId=" + instituteId + "&departmentId=" + departmentId + "&pupilId=" + id + "&year=2018",  { waitUntil : 'networkidle0' });
         await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
 
 
         const mainData = await page.evaluate(() => {
             //res.send(document.documentElement.outerHTML);
-            try{/*
+            try{
                 var elements = $('table.table-bordered.DiaryTable.d-none.d-md-table:not([lesson])');
                 var dayNames = $('h3.weekDayDiary');
 
@@ -76,7 +76,7 @@ router.get('/', function (req, res, next) {
                     days.push(dayShedule);
                 }
 
-                return days;*/
+                return days;
 
                 return document.documentElement.outerHTML;
             } catch (e) {
