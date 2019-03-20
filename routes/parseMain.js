@@ -45,7 +45,7 @@ router.get('/', function (req, res, next) {
                     dayShedule.hrefHwNames = [[]];
 
 
-                    var trS = elements.eq(i).find('tbody').first().find('tr');
+                    var trS = elements.eq(i).find('tbody').eq(0).find('tr');
 
                     for(var j = 0; j < trS.length; j += 2){
                         if(trS.eq(j).find('td').eq(3).text() === 'Нет занятий'){
@@ -56,9 +56,9 @@ router.get('/', function (req, res, next) {
 
                         var tdS = trS.eq(j).find('td');
                         dayShedule.lessons[j] = tdS.eq(2).text();
-                        dayShedule.homeworks[j] = tdS.eq(3).find('div').not('.diary-homework-list').first().text();
-                        dayShedule.marks[j] = trS.eq(j).find('td.diary-lesson-mark-cell').first().text();
-                        dayShedule.teacherComment[j] = trS.eq(j).find('td.diary-teacher-comment').first().text();
+                        dayShedule.homeworks[j] = tdS.eq(3).find('div').not('.diary-homework-list').eq(0).text();
+                        dayShedule.marks[j] = trS.eq(j).find('td.diary-lesson-mark-cell').eq(0).text();
+                        dayShedule.teacherComment[j] = trS.eq(j).find('td.diary-teacher-comment').eq(0).text();
 
                         console.log(dayShedule.lessons[j], dayShedule.homeworks[j], dayShedule.marks[j], dayShedule.teacherComment[j]);
 
