@@ -10,12 +10,12 @@ router.get('/', function (req, res, next) {
     (async () => {
             const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
             const page = await browser.newPage();
-            await page.goto('https://elschool.ru/');
+            await page.goto('https://elschool.ru/', {waitUntil: 'load', timeout: 0});
             await page.type('#login', login);
             await page.type('#password', password);
             await page.click('#sub-btn');
             await page.waitForNavigation().catch(() => console.log("catched"));
-            await page.goto('https://elschool.ru/privateoffice');
+            await page.goto('https://elschool.ru/privateoffice', {waitUntil: 'load', timeout: 0});
             //  await page.waitForNavigation().catch();
             await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
 
@@ -73,7 +73,7 @@ router.get('/', function (req, res, next) {
             });
 
             if (user === "CHILD") {
-                await page.goto('https://elschool.ru/users/diaries/');
+                await page.goto('https://elschool.ru/users/diaries/', {waitUntil: 'load', timeout: 0});
                 const act_data = await page.evaluate(() => {
                     try {
                         var elem = window.location.href;
