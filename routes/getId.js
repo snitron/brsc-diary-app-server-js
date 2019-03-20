@@ -14,7 +14,7 @@ router.get('/', function (req, res, next) {
             await page.type('#login', login);
             await page.type('#password', password);
             await page.click('#sub-btn');
-            await page.waitForNavigation().catch();
+            await page.waitForNavigation().catch(() => console.log("catched"));
             await page.goto('https://elschool.ru/privateoffice');
             //  await page.waitForNavigation().catch();
             await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
@@ -28,7 +28,7 @@ router.get('/', function (req, res, next) {
 
                         var child_ids = [];
                         for (var i = 0; i < buttons.length; i++) {
-                            var elem = buttons[i].attr('href');
+                            var elem = buttons.eq(i).attr('href');
                             data = String(elem).substring(String(elem).indexOf('?') + 1).split('&');
                             child_ids.push({
                                 "rooId": data[0].substring(6),
