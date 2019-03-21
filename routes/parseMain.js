@@ -22,8 +22,8 @@ router.get('/', function (req, res, next) {
             await page.click('#sub-btn');
             await page.waitForNavigation().catch(() => console.log("catched"));
             await page.goto('https://elschool.ru/users/diaries/details?rooId=' + rooId
-                + "&instituteId=" + instituteId + "&departmentId=" + departmentId + "&pupilId=" + id + "&year=2019&week=12",  { waitUntil: 'networkidle2' });
-            await page.waitFor(5000).then();
+                + "&instituteId=" + instituteId + "&departmentId=" + departmentId + "&pupilId=" + id + "&year=2019&week=12",  { waitUntil: ['networkidle2', 'domcontentloaded']});
+//            await page.waitFor(5000).then();
 
             await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
 
@@ -82,7 +82,7 @@ router.get('/', function (req, res, next) {
 
                 return days;
 */
-                return document.documentElement.innerText;
+                return document.documentElement.outerHTML;
             } catch (e) {
                 return e.toString();
             }
