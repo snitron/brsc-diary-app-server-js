@@ -6,19 +6,19 @@ router.get('/', function (req, res, next) {
     var login = req.query.login;
     var password = req.query.password;
 
-    const Browser = require('zombie');
-    var browser = new Browser();
+    const Nightmare = require('nightmare');
+    const nightmare = Nightmare();
 
-    (async () =>{
-        await browser.visit('https://elschool.ru/');
-        await browser.fill('#login', login);
-        await browser.fill('#password', password);
-        const page = await browser.pressButton('#sub-btn', function () {
-            return document.documentElement.outerHTML;
-        }).catch(() => console.log('catched'));
-
-        res.send(page);
-    })();
+    nightmare
+        .goto('https://elschool.ru/Logon/Index')
+        .type('#login', login)
+        .type('#password', password)
+        .click('#sub-btn')
+        .wait('#navbar-cheat')
+        .goto('https://elschool.ru/Logon/Index')
+        .evaluate(() => {return document.documentElement.outerHTML})
+        .end()
+        .then((text) => res.send(text));
 });
 
 module.exports = router;

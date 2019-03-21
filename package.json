@@ -8,10 +8,12 @@
   "dependencies": {
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "electron": "^4.1.1",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
     "jquery": "^3.3.1",
     "morgan": "~1.9.0",
+    "nightmare": "^3.0.1",
     "pug": "2.0.0-beta11",
     "puppeteer": "^1.13.0",
     "zombie": "^6.1.4"
