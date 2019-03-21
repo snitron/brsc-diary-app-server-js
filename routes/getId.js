@@ -6,29 +6,22 @@ router.get('/', function (req, res, next) {
     var login = req.query.login;
     var password = req.query.password;
 
-    console.log('GOT');
-    const Nightmare = require('nightmare');
-    console.log('NGHTMR INIT');
-    const nightmare = Nightmare({show: true});
-    console.log('NIGHTMR CRTD');
-    nightmare
-        .goto('https://elschool.ru/Logon/Index')
-        .type('#login', login)
-        .type('#password', password)
-        .click('#sub-btn')
-        .goto('https://elschool.ru/users/diaries')
-        .evaluate(() => {
-            try {
-                console.log('EVLT');
-                return document.documentElement.outerHTML;
-            } catch (e) {
-                return e.toString();
-            }
-        })
-        .end()
-        .then((result) => res.send(result()))
-        .catch(() => console.log('error'));
-    console.log('SCRIPT END')
+   const Horseman = require('node-horseman');
+   const horseman = new Horseman();
+
+   horseman
+       .userAgent('Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0')
+       .open('https://elschool.ru/')
+       .type('#login', login)
+       .type('#password', password)
+       .click('#sub-btn')
+       .waitForNextPage({timeout: 30000})
+       .open('https://elschool.ru/users/diaries/')
+       .evaluate(() => {return document.documentElement.outerHTML})
+       .then(function (data) {
+           res.send(data)
+       }, 'body')
+       .close()
 
 });
 
