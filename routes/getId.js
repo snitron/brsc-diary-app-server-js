@@ -14,8 +14,7 @@ router.get('/', function (req, res, next) {
         .type('#login', login)
         .type('#password', password)
         .click('#sub-btn')
-        .wait('#navbar-cheat')
-        .goto('https://elschool.ru/Logon/Index')
+        .goto('https://elschool.ru/users/diaries')
         .evaluate(() => {return document.documentElement.outerHTML})
         .end()
         .then((text) => res.send(text));
