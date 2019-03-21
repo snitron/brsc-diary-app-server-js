@@ -7,7 +7,7 @@ router.get('/', function (req, res, next) {
     var password = req.query.password;
 
     const Nightmare = require('nightmare');
-    const nightmare = Nightmare();
+    const nightmare = Nightmare({ show: true });
 
     (async () => {
             const result = await nightmare
