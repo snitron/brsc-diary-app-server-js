@@ -7,9 +7,9 @@ router.get('/', function (req, res, next) {
     var password = req.query.password;
 
     const Nightmare = require('nightmare');
-    const nightmare = Nightmare({ show: true });
 
     (async () => {
+            const nightmare = await Nightmare({show: true});
             const result = await nightmare
                 .goto('https://elschool.ru/Logon/Index')
                 .type('#login', login)
@@ -19,6 +19,7 @@ router.get('/', function (req, res, next) {
                 .evaluate(() => {
                     return document.documentElement.outerHTML
                 })
+                .catch(() => res.send('error'))
                 .end();
 
             res.send(result);
