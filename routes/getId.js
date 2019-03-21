@@ -11,7 +11,7 @@ router.get('/', function (req, res, next) {
 
    horseman
        .userAgent('Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0')
-       .open('https://elschool.ru/')
+       .open('https://elschool.ru/Logon/Index')
        .type('#login', login)
        .type('#password', password)
        .click('#sub-btn')
