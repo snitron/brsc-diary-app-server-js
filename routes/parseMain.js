@@ -85,7 +85,7 @@ router.get('/', function (req, res, next) {
 
                 return days;
 */
-                return page.content();
+                return document.documentElement.outerHTML;
             } catch (e) {
                 return e.toString();
             }
