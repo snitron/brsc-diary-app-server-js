@@ -10,28 +10,28 @@ router.get('/', function (req, res, next) {
     var instituteId = req.query.instituteId;
     var departmentId = req.query.depatmentId;
 
-           const puppeteer = require('puppeteer');
+    const puppeteer = require('puppeteer');
 
-        (async () => {
-            const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
-            const page = await browser.newPage();
-            await page.setUserAgent('Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36');
-            await page.goto('https://elschool.ru/', {waitUntil: 'load', timeout: 0});
-            await page.type('#login', login);
-            await page.type('#password', password);
-            await page.click('#sub-btn');
-            await page.waitForNavigation().catch(() => console.log("catched"));
-            await page.goto('https://elschool.ru/users/diaries/details?rooId=' + rooId
-                + "&instituteId=" + instituteId + "&departmentId=" + departmentId + "&pupilId=" + id + "&year=2019&week=12",  { waitUntil: ['networkidle2', 'domcontentloaded']});
-//            await page.waitFor(5000).then();
+    (async () => {
+        const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+        const page = await browser.newPage();
+        await page.setUserAgent('Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36');
+        await page.goto('https://elschool.ru/', {waitUntil: 'load', timeout: 0});
+        await page.type('#login', login);
+        await page.type('#password', password);
+        await page.click('#sub-btn');
+        await page.waitForNavigation().catch(() => console.log("catched"));
+        await page.goto('https://elschool.ru/users/diaries/details?rooId=' + rooId
+            + "&instituteId=" + instituteId + "&departmentId=" + departmentId + "&pupilId=" + id + "&year=2019&week=12", {waitUntil: ['networkidle2', 'domcontentloaded']});
+        await page.waitForSelector('table.table-bordered.DiaryTable.MobileDiary.collapseTrigger.d-table.d-md-none').catch(() => console.log("catched"));
 
-            await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
+        await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
 
 
         const mainData = await page.evaluate(() => {
             //res.send(document.documentElement.outerHTML);
 
-            try{/*
+            try {/*
                 var elements = $('table.table-bordered.DiaryTable.d-none.d-md-table:not([lesson])');
                 var dayNames = $('h3.weekDayDiary');
 
