@@ -17,9 +17,13 @@ router.get('/', function (req, res, next) {
                 .click('#sub-btn')
                 .goto('https://elschool.ru/users/diaries')
                 .evaluate(() => {
-                    return document.documentElement.outerHTML;
+                    try {
+                        return document.documentElement.outerHTML;
+                    } catch (e) {
+                        return e.toString();
+                    }
                 });
-            
+
             await nightmare.end();
 
             res.send(result);
