@@ -23,7 +23,7 @@ router.get('/', function (req, res, next) {
         await page.waitForNavigation().catch(() => console.log("catched"));
         await page.goto('https://elschool.ru/users/diaries/details?rooId=' + rooId
             + "&instituteId=" + instituteId + "&departmentId=" + departmentId + "&pupilId=" + id + "&year=2019&week=12", {waitUntil: ['networkidle2', 'domcontentloaded']});
-        await page.waitForSelector('table.table-bordered.DiaryTable.MobileDiary.collapseTrigger.d-table.d-md-none').catch(() => console.log("catched"));
+        await page.waitForSelector('i.fa.fa-pencil-square-o').catch(() => console.log("catched"));
 
         await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
 
