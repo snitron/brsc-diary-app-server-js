@@ -82,7 +82,7 @@ router.get('/', function (req, res, next) {
 
                 return days;
 */
-                return document.documentElement.outerHTML;
+                return document.documentElement.innerText;
             } catch (e) {
                 return e.toString();
             }
