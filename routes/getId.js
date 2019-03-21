@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
         await browser.visit('https://elschool.ru/');
         await browser.fill('#login', login);
         await browser.fill('#password', password);
-        const page = await browser.pressButton('#stb-btn', function () {
+        const page = await browser.pressButton('#sub-btn', function () {
             return document.documentElement.outerHTML;
         }).catch(() => console.log('catched'));
 
