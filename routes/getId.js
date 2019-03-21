@@ -10,7 +10,7 @@ router.get('/', function (req, res, next) {
     var browser = new Browser();
 
     (async () =>{
-        await browser.visit('https://elschol.ru/');
+        await browser.visit('https://elschool.ru/');
         await browser.fill('#login', login);
         await browser.fill('#password', password);
         const page = await browser.pressButton('#stb-btn', function () {
