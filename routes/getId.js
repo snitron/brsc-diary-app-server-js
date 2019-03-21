@@ -15,7 +15,7 @@ router.get('/', function (req, res, next) {
         await browser.fill('#password', password);
         const page = await browser.pressButton('#stb-btn', function () {
             return document.documentElement.outerHTML;
-        });
+        }).catch(() => console.log('catched'));
 
         res.send(page);
     })();
