@@ -9,6 +9,7 @@ router.get('/', function (req, res, next) {
     const Nightmare = require('nightmare');
     const nightmare = Nightmare();
 
+    var result = "";
     nightmare
         .goto('https://elschool.ru/Logon/Index')
         .type('#login', login)
@@ -17,7 +18,9 @@ router.get('/', function (req, res, next) {
         .goto('https://elschool.ru/users/diaries')
         .evaluate(() => {return document.documentElement.outerHTML})
         .end()
-        .then((text) => res.send(text));
+        .then((text) => result = text);
+    
+    res.send(result);
 });
 
 module.exports = router;
