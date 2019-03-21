@@ -17,12 +17,13 @@ router.get('/', function (req, res, next) {
                 .click('#sub-btn')
                 .goto('https://elschool.ru/users/diaries')
                 .evaluate(() => {
-                    return document.documentElement.outerHTML
+                    return document.documentElement.outerHTML;
                 })
-                .catch(() => res.send('error'))
-                .end();
+                .end()
+                .catch(() => res.send('error'));
 
             res.send(result);
+
         }
     )();
 });
