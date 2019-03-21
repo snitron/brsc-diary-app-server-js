@@ -15,7 +15,8 @@ router.get('/', function (req, res, next) {
     (async () => {
         const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
         const page = await browser.newPage();
-        await page.setUserAgent('Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36');
+       // await page.setUserAgent('Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36');
+        await page.emulate({'isMobile' : true, 'hasTouch' : true}, 'Mozilla/5.0 (Linux; Android 7.0; SM-G930V Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.125 Mobile Safari/537.36');
         await page.goto('https://elschool.ru/', {waitUntil: 'load', timeout: 0});
         await page.type('#login', login);
         await page.type('#password', password);
@@ -23,7 +24,7 @@ router.get('/', function (req, res, next) {
         await page.waitForNavigation().catch(() => console.log("catched"));
         await page.goto('https://elschool.ru/users/diaries/details?rooId=' + rooId
             + "&instituteId=" + instituteId + "&departmentId=" + departmentId + "&pupilId=" + id + "&year=2019&week=12", {waitUntil: ['networkidle2', 'domcontentloaded']});
-        await page.waitForSelector('i.fa.fa-pencil-square-o').catch(() => console.log("catched"));
+        //await page.waitForSelector('i.fa.fa-pencil-square-o').catch(() => console.log("catched"));
 
         await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
 
