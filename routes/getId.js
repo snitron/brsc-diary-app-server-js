@@ -8,27 +8,24 @@ router.get('/', function (req, res, next) {
 
     const Nightmare = require('nightmare');
     const nightmare = Nightmare({show: true});
-    (async () => {
+    nightmare
+        .goto('https://elschool.ru/Logon/Index')
+        .type('#login', login)
+        .type('#password', password)
+        .click('#sub-btn')
+        .goto('https://elschool.ru/users/diaries')
+        .evaluate(() => {
+            try {
+                return document.documentElement.outerHTML;
+            } catch (e) {
+                return e.toString();
+            }
+        })
+        .end()
+        .then((result) => res.send(result()))
+        .catch(() => console.log('error'));
 
-            const result = await nightmare
-                .goto('https://elschool.ru/Logon/Index')
-                .type('#login', login)
-                .type('#password', password)
-                .click('#sub-btn')
-                .goto('https://elschool.ru/users/diaries')
-                .evaluate(() => {
-                    try {
-                        return document.documentElement.outerHTML;
-                    } catch (e) {
-                        return e.toString();
-                    }
-                });
 
-            await nightmare.end();
-
-            res.send(result);
-        }
-    )();
 });
 
 module.exports = router;
