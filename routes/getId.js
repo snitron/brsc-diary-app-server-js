@@ -9,18 +9,21 @@ router.get('/', function (req, res, next) {
     const Nightmare = require('nightmare');
     const nightmare = Nightmare();
 
-    var result = "";
-    nightmare
-        .goto('https://elschool.ru/Logon/Index')
-        .type('#login', login)
-        .type('#password', password)
-        .click('#sub-btn')
-        .goto('https://elschool.ru/users/diaries')
-        .evaluate(() => {return document.documentElement.outerHTML})
-        .end()
-        .then((text) => result = text);
-    
-    res.send(result);
+    (async () => {
+            const result = await nightmare
+                .goto('https://elschool.ru/Logon/Index')
+                .type('#login', login)
+                .type('#password', password)
+                .click('#sub-btn')
+                .goto('https://elschool.ru/users/diaries')
+                .evaluate(() => {
+                    return document.documentElement.outerHTML
+                })
+                .end();
+
+            res.send(result);
+        }
+    )();
 });
 
 module.exports = router;
