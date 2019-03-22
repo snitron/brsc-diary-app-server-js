@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
     const puppeteer = require('puppeteer');
 
     (async () => {
-        const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+        const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox', '--shm-size=1gb']});
         const page = await browser.newPage();
         await page.setUserAgent('Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36');
         await page.goto('https://elschool.ru/', {waitUntil: 'load', timeout: 0});
