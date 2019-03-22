@@ -53,7 +53,7 @@ router.get('/', function (req, res, next) {
                         if(trS.eq(j).find('td').eq(3).text() === 'Нет занятий'){
                             dayShedule.count = 0;
                             dayShedule.isWeekend = true;
-                            break;
+                            continue;
                         }
                         console.log(j);
                         var tdS = trS.eq(j).find('td');
