@@ -28,7 +28,8 @@ router.get('/', function (req, res, next) {
 
         const mainData = page.evaluate(() => {
             try {
-                var trS = $('#grades-table').eq(0).find('tr');
+                var table = $('table.table-bordered.GradesTable');
+                var trS = table.eq(0).find('tr');
 
                 var data = [];
                 for (var i = 0; trS.length; i++) {
