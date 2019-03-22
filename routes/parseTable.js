@@ -33,6 +33,15 @@ router.get('/', function (req, res, next) {
                 var data = [];
                 for (var i = 0; trS.length; i++) {
                     var lessonTable = {};
+                    lessonTable.lesson = '';
+                    lessonTable.average_mark1 = '';
+                    lessonTable.m1 = '';
+                    lessonTable.average_mark2 = '';
+                    lessonTable.m2 = '';
+                    lessonTable.average_mark3 = '';
+                    lessonTable.m3 = '';
+                    lessonTable.average_mark4 = '';
+                    lessonTable.m4 = '';
 
                     var tdS = trS.eq(i).find('td');
 
