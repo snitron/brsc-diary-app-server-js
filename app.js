@@ -9,7 +9,7 @@ var usersRouter = require('./routes/users');
 var parseMainRouter = require('./routes/parseMain');
 var getIdRouter = require('./routes/getId');
 var getDiaryYears = require('./routes/getDiaryYears');
-var getTable = require('./routes/getTable');
+var getTable = require('./routes/parseTable');
 
 var app = express();
 
@@ -28,7 +28,7 @@ app.use('/users', usersRouter);
 app.use('/parseMain', parseMainRouter);
 app.use('/getId', getIdRouter);
 app.use('/getDiaryYears', getDiaryYears);
-app.use('/getTable', getTable);
+app.use('/parseTable', getTable);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
