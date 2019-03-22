@@ -24,8 +24,7 @@ router.get('/', function (req, res, next) {
         await page.type('#password', password);
         await page.click('#sub-btn');
         await page.waitForNavigation().catch(() => console.log("catched"));
-        await page.goto('https://elschool.ru/users/diaries/details?rooId=' + rooId
-            + '&instituteId=' + instituteId + '&departmentId=' + departmentId + '&pupilId=' + id + '&year=2019&week=12', {waitUntil: ['networkidle2', 'domcontentloaded']});
+        await page.goto('https://elschool.ru/users/diaries/details?rooId=52&instituteId=479&departmentId=62287&pupilId=494129', {waitUntil: ['networkidle2', 'domcontentloaded']});
         //await page.waitForSelector('i.fa.fa-pencil-square-o').catch(() => console.log("catched"));
         await page.waitForSelector('#spinnerMessageSpan', {hidden: true});
         await page.waitFor(2000).catch(() => console.log("catched"));
