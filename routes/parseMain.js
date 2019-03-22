@@ -28,6 +28,7 @@ router.get('/', function (req, res, next) {
             + '&instituteId=' + instituteId + '&departmentId=' + departmentId + '&pupilId=' + id + '&year=2019&week=12', {waitUntil: ['networkidle2', 'domcontentloaded']});
         //await page.waitForSelector('i.fa.fa-pencil-square-o').catch(() => console.log("catched"));
         await page.waitForSelector('#spinnerMessageSpan', {hidden: true});
+        await page.waitFor(2000).catch(() => console.log("catched"));
         await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
 
 
