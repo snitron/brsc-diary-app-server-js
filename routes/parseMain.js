@@ -13,7 +13,9 @@ router.get('/', function (req, res, next) {
     const puppeteer = require('puppeteer');
     const devices = require('puppeteer/DeviceDescriptors');
     const pixel = devices['Pixel 2 XL'];
-
+    res.send('https://elschool.ru/users/diaries/details?rooId=' + rooId
+        + '&instituteId=' + instituteId + '&departmentId=' + departmentId + '&pupilId=' + id + '&year=2019&week=12');
+/*
     (async () => {
         const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
         const page = await browser.newPage();
@@ -24,8 +26,9 @@ router.get('/', function (req, res, next) {
         await page.type('#password', password);
         await page.click('#sub-btn');
         await page.waitForNavigation().catch(() => console.log("catched"));
-        await page.goto('https://elschool.ru/users/diaries/details?rooId=52&instituteId=479&departmentId=62287&pupilId=494129', {waitUntil: ['networkidle2', 'domcontentloaded']});
-        //await page.waitForSelector('i.fa.fa-pencil-square-o').catch(() => console.log("catched"));
+        await page.goto('https://elschool.ru/users/diaries/details?rooId=' + rooId
+            + '&instituteId=' + instituteId + '&departmentId=' + departmentId + '&pupilId=' + id + '&year=2019&week=12', {waitUntil: ['networkidle2', 'domcontentloaded']});
+        //https://elschool.ru/users/diaries/details?rooId=52&instituteId=479&departmentId=62287&pupilId=494129
         await page.waitForSelector('#spinnerMessageSpan', {hidden: true});
         await page.waitFor(2000).catch(() => console.log("catched"));
         await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
@@ -84,7 +87,7 @@ router.get('/', function (req, res, next) {
                 }
 
                 return days;
-*/
+
                 return document.documentElement.outerHTML;
             } catch (e) {
                 return e.toString();
@@ -93,7 +96,7 @@ router.get('/', function (req, res, next) {
 
         res.send(mainData);
 
-        await browser.close();
+        await browser.close();*/
     })();
 });
 
