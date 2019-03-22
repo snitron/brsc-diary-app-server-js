@@ -34,7 +34,7 @@ router.get('/', function (req, res, next) {
                 for (var i = 0; i < data.length; i++) {
                     idS.push({
                         'name': data.eq(i).text(),
-                        'departmentId': data.eq(i).text()
+                        'departmentId': data.eq(i).attr('model-department-id')
                     })
                 }
 
