@@ -34,7 +34,7 @@ router.get('/', function (req, res, next) {
                 var dayNames = $('h3.weekDayDiary');
 
                 var days = [];
-                for(var i = 0; i < elements.length; i++){
+                for (var i = 0; i < elements.length; i++) {
                     var dayShedule = {};
                     dayShedule.lessons = [];
                     dayShedule.count = 0;
@@ -49,12 +49,13 @@ router.get('/', function (req, res, next) {
 
                     var trS = elements.eq(i).find('tbody').eq(0).find('tr');
 
-                    for(var j = 0; j < trS.length; j += 2){
-                        if(trS.eq(j).find('td').eq(3).text() === 'Нет занятий'){
-                            dayShedule.count = 0;
-                            dayShedule.isWeekend = true;
-                            continue;
-                        }
+                    for (var j = 0; j < trS.length; j += 2) {
+                        if (trS.eq(j).find('td').eq(3).find('h2').length !== 0)
+                            if (trS.eq(j).find('td').eq(3).find('h2').eq(0).text() === 'Нет занятий') {
+                                dayShedule.count = 0;
+                                dayShedule.isWeekend = true;
+                                continue;
+                            }
                         console.log(j);
                         var tdS = trS.eq(j).find('td');
                         dayShedule.lessons[j / 2] = tdS.eq(2).text().trim();
@@ -64,9 +65,9 @@ router.get('/', function (req, res, next) {
 
                         console.log(dayShedule.lessons[j], dayShedule.homeworks[j], dayShedule.marks[j], dayShedule.teacherComment[j]);
 
-                        if(tdS.eq(3).find('a.HomeWorkFile').length !== 0){
+                        if (tdS.eq(3).find('a.HomeWorkFile').length !== 0) {
                             var hrefsTd = tdS.eq(3).find('a.HomeWorkFile');
-                            for (var k = 0; k < hrefsTd.length; k++){
+                            for (var k = 0; k < hrefsTd.length; k++) {
                                 dayShedule.hrefHw[j / 2][k] = hrefsTd.eq(i).attr('href').trim();
                                 dayShedule.hrefHwNames[j / 2][k] = hrefsTd.eq(i).text().trim();
                             }
