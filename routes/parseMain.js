@@ -25,14 +25,13 @@ router.get('/', function (req, res, next) {
             + '&instituteId=' + instituteId + '&departmentId=' + departmentId + '&pupilId=' + id + '&year=2019&week=12', {waitUntil: ['networkidle2', 'domcontentloaded']});
         //https://elschool.ru/users/diaries/details?rooId=52&instituteId=479&departmentId=62287&pupilId=494129
         await page.waitForSelector('#spinnerMessageSpan', {hidden: true});
-        await page.waitFor(2000).catch(() => console.log("catched"));
         await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
 
 
         const mainData = await page.evaluate(() => {
-            //res.send(document.documentElement.outerHTML);
 
-            try {/*
+
+            try {
                 var elements = $('table.table-bordered.DiaryTable.d-none.d-md-table:not([lesson])');
                 var dayNames = $('h3.weekDayDiary');
 
@@ -82,13 +81,12 @@ router.get('/', function (req, res, next) {
                 }
 
                 return days;
-*/
-                return document.documentElement.outerHTML;
+
             } catch (e) {
                 return e.toString();
             }
         });
-        res.send(mainData);
+        res.send(JSON.stringify(mainData));
 
         await browser.close();
     })();
