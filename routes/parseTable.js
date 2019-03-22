@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
     const puppeteer = require('puppeteer');
 
     (async () => {
-        const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox', '--shm-size=1gb']});
+        const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
         const page = await browser.newPage();
         await page.setUserAgent('Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36');
         await page.goto('https://elschool.ru/', {waitUntil: 'load', timeout: 0});
@@ -26,10 +26,9 @@ router.get('/', function (req, res, next) {
         await page.waitForSelector('#spinnerMessageSpan', {hidden: true});
         await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
 
-        const mainData = page.evaluate(() => {
+        const mainData = await page.evaluate(() => {
             try {
-                var table = $('table.table-bordered.GradesTable');
-                var trS = table.eq(0).find('tr');
+                var trS = $('table.table-bordered.GradesTable').eq(0).find('tr');
 
                 var data = [];
                 for (var i = 0; trS.length; i++) {
