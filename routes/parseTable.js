@@ -32,7 +32,7 @@ router.get('/', function (req, res, next) {
                 var trS = $('table.table-bordered.GradesTable').eq(0).find('tr');
 
                 var data = [];
-                for (var i = 0; trS.length; i++) {
+                for (var i = 0; i < trS.length; i++) {
                     var lessonTable = {};
                     lessonTable.lesson = '';
                     lessonTable.average_mark1 = '';
