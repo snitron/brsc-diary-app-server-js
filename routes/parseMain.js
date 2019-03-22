@@ -8,19 +8,14 @@ router.get('/', function (req, res, next) {
     var password = req.query.password;
     var rooId = req.query.rooid;
     var instituteId = req.query.instituteId;
-    var departmentId = req.query.depatmentId;
+    var departmentId = req.query.departmentId;
 
     const puppeteer = require('puppeteer');
-    const devices = require('puppeteer/DeviceDescriptors');
-    const pixel = devices['Pixel 2 XL'];
-    res.send('https://elschool.ru/users/diaries/details?rooId=' + rooId
-        + '&instituteId=' + instituteId + '&departmentId=' + departmentId + '&pupilId=' + id + '&year=2019&week=12');
-/*
+
     (async () => {
         const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
         const page = await browser.newPage();
-       // await page.setUserAgent('Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36');
-        await page.emulate(pixel);
+        await page.setUserAgent('Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36');
         await page.goto('https://elschool.ru/', {waitUntil: 'load', timeout: 0});
         await page.type('#login', login);
         await page.type('#password', password);
@@ -87,16 +82,15 @@ router.get('/', function (req, res, next) {
                 }
 
                 return days;
-
+*/
                 return document.documentElement.outerHTML;
             } catch (e) {
                 return e.toString();
             }
         });
-
         res.send(mainData);
 
-        await browser.close();*/
+        await browser.close();
     })();
 });
 
