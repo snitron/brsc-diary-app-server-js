@@ -45,8 +45,8 @@ router.get('/', function (req, res, next) {
                     dayShedule.isWeekend = false;
                     dayShedule.dayName = "";
                     dayShedule.teacherComment = [];
-                    dayShedule.hrefHw = [[]];
-                    dayShedule.hrefHwNames = [[]];
+                    dayShedule.hrefHw = [];
+                    dayShedule.hrefHwNames = [];
 
 
                     var trS = elements.eq(i).find('tbody').eq(0).find('tr');
@@ -69,9 +69,11 @@ router.get('/', function (req, res, next) {
 
                         if (tdS.eq(3).find('a.HomeWorkFile').length !== 0) {
                             var hrefsTd = tdS.eq(3).find('a.HomeWorkFile');
+                            dayShedule.hrefHw[j / 2] = [];
+                            dayShedule.hrefHwNames[j / 2] = [];
                             for (var k = 0; k < hrefsTd.length; k++) {
                                 dayShedule.hrefHw[j / 2][k] = hrefsTd.eq(k).attr('href');
-                                dayShedule.hrefHwNames[j / 2][k] = hrefsTd.eq(k).attr('data-original-title');
+                                dayShedule.hrefHwNames[j / 2][k] = hrefsTd.eq(k).text().trim();
                             }
                         }
 
