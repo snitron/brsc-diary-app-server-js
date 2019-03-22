@@ -27,9 +27,7 @@ router.get('/', function (req, res, next) {
         await page.waitForSelector('#spinnerMessageSpan', {hidden: true});
         await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
 
-
         const mainData = await page.evaluate(() => {
-
 
             try {
                 var elements = $('table.table-bordered.DiaryTable.d-none.d-md-table:not([lesson])');
@@ -57,7 +55,7 @@ router.get('/', function (req, res, next) {
                             dayShedule.isWeekend = true;
                             break;
                         }
-
+                        console.log(j);
                         var tdS = trS.eq(j).find('td');
                         dayShedule.lessons[j] = tdS.eq(2).text();
                         dayShedule.homeworks[j] = tdS.eq(3).find('div').not('.diary-homework-list').eq(0).text();
