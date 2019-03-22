@@ -86,7 +86,7 @@ router.get('/', function (req, res, next) {
             } catch (e) {
                 return e.toString()
             }
-        });
+        }).catch(() => console.log('catched'));
 
 
         res.send(JSON.stringify(mainData));
