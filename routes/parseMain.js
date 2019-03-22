@@ -70,7 +70,7 @@ router.get('/', function (req, res, next) {
                         if (tdS.eq(3).find('a.HomeWorkFile').length !== 0) {
                             var hrefsTd = tdS.eq(3).find('a.HomeWorkFile');
                             for (var k = 0; k < hrefsTd.length; k++) {
-                                dayShedule.hrefHw[j / 2][k] = hrefsTd.eq(i).attr('href').trim();
+                                dayShedule.hrefHw[j / 2][k] = hrefsTd.eq(i).attr('href').text().trim();
                                 dayShedule.hrefHwNames[j / 2][k] = hrefsTd.eq(i).text().trim();
                             }
                         }
