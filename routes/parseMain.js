@@ -80,6 +80,7 @@ router.get('/', function (req, res, next) {
                         dayShedule.isWeekend = false;
 
                 }
+                    dayShedule.count = dayShedule.lessons.length;
                     dayShedule.dayName = dayNames.eq(i).text().trim();
                     days.push(dayShedule);
                 }
