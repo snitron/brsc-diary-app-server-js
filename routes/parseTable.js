@@ -27,7 +27,7 @@ router.get('/', function (req, res, next) {
         await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
 
         const mainData = await page.evaluate(() => {
-            
+
             try {
                 var trS = $('table.table-bordered.GradesTable').eq(0).find('tr');
 
@@ -86,7 +86,7 @@ router.get('/', function (req, res, next) {
             } catch (e) {
                 return e.toString()
             }
-        }).catch(() => console.log('catched'));
+        });
 
 
         res.send(JSON.stringify(mainData));
