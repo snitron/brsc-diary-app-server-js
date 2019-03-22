@@ -71,12 +71,12 @@ router.get('/', function (req, res, next) {
                             var hrefsTd = tdS.eq(3).find('a.HomeWorkFile');
                             for (var k = 0; k < hrefsTd.length; k++) {
                                 dayShedule.hrefHw[j / 2][k] = hrefsTd.eq(k).attr('href');
-                                dayShedule.hrefHwNames[j / 2][k] = hrefsTd.eq(k).text();
+                                dayShedule.hrefHwNames[j / 2][k] = hrefsTd.eq(k).attr('data-original-title');
                             }
                         }
 
                         dayShedule.isWeekend = false;
-                        
+
                 }
                     dayShedule.dayName = dayNames.eq(i).text().trim();
                     days.push(dayShedule);
