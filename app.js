@@ -10,7 +10,7 @@ var parseMainRouter = require('./routes/parseMain');
 var getIdRouter = require('./routes/getId');
 var getDiaryYears = require('./routes/getDiaryYears');
 var getTable = require('./routes/parseTable');
-var getResult = require('./routes/parseResults';
+var getResult = require('./routes/parseResults');
 
 var app = express();
 
