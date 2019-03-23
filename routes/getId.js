@@ -21,7 +21,6 @@ router.get('/', function (req, res, next) {
             const user = await page.evaluate(() => {
                 try {
                     var buttons = $('a.btn.btn-sm.btn-primary');
-
                     if (buttons.length > 1) {
                         //it is parent
 
@@ -88,7 +87,7 @@ router.get('/', function (req, res, next) {
                             "instituteId": data[1].substring(12),
                             "departmentId": data[2].substring(13),
                             "userId": data[3].substring(8),
-                            "userName": $('h1.text-center').eq(0).text().trim()
+                            "userName": $('h4').eq(0).text().trim()
                         });
                         let isParent = false;
                         let parentName = null;
