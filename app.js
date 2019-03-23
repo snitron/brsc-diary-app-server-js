@@ -10,6 +10,7 @@ var parseMainRouter = require('./routes/parseMain');
 var getIdRouter = require('./routes/getId');
 var getDiaryYears = require('./routes/getDiaryYears');
 var getTable = require('./routes/parseTable');
+var getResult = require('./routes/parseResults';
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use('/parseMain', parseMainRouter);
 app.use('/getId', getIdRouter);
 app.use('/getDiaryYears', getDiaryYears);
 app.use('/parseTable', getTable);
+app.use('/parseResults', getResult);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
