@@ -32,7 +32,7 @@ router.get('/', function (req, res, next) {
 
                 var data = [];
 
-                if ($('#result-marks-table').find('thead').eq(0).find('tr').eq(5) === '1 полугодие')
+                if ($('#result-marks-table').find('thead').eq(0).find('td').eq(5) === '1 полугодие')
                     for (var i = 0; i < trS.length; i++) {
                         var lessonResults = {};
 
