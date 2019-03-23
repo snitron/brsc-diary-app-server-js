@@ -29,7 +29,7 @@ router.get('/', function (req, res, next) {
         const mainData = await page.evaluate(() => {
 
             try {
-                var trS = $('table.table-bordered.GradesTable').eq(0).find('tr');
+                var trS = $('table.table-bordered.GradesTable').eq(0).find('tbody').eq(0).find('tr');
 
                 var data = [];
                 for (var i = 0; i < trS.length; i++) {

@@ -27,49 +27,82 @@ router.get('/', function (req, res, next) {
         await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
 
         const mainData = await page.evaluate(() => {
-            var trS = $('#result-marks-table').find('tr');
+            var trS = $('#result-marks-table').find('tbody').eq(0).find('tr');
 
             var data = [];
-            for (var i = 0; i < trS.length; i++) {
-                var lessonResults = {};
 
-                lessonResults.lesson = '';
-                lessonResults.m1 = '';
-                lessonResults.m2 = '';
-                lessonResults.m3 = '';
-                lessonResults.m4 = '';
-                lessonResults.y = '';
-                lessonResults.res = '';
-                lessonResults.test = '';
-                lessonResults.isHalfYear = false;
+            if ($('#result-marks-table').find('thead').eq(0).find('tr').eq(5) === '1 ПОЛУГОДИЕ')
+                for (var i = 0; i < trS.length; i++) {
+                    var lessonResults = {};
 
-                var tdS = trS.eq(i).find('td');
+                    lessonResults.lesson = '';
+                    lessonResults.m1 = '';
+                    lessonResults.m2 = '';
+                    lessonResults.m3 = '';
+                    lessonResults.m4 = '';
+                    lessonResults.y = '';
+                    lessonResults.res = '';
+                    lessonResults.test = '';
+                    lessonResults.isHalfYear = false;
 
-                if (tdS.eq(1).text().trim() === '' &&
-                    tdS.eq(2).text().trim() === '' &&
-                    tdS.eq(3).text().trim() === '' &&
-                    tdS.eq(4).text().trim() === '' &&
-                    (tdS.eq(5).text().trim() !== '' || tdS.eq(6).text().trim()))
-                    lessonResults.isHalfYear = true;
+                    var tdS = trS.eq(i).find('td');
 
-                lessonResults.lesson = tdS.eq(0).text().trim();
 
-                if(lessonResults.isHalfYear){
-                    lessonResults.m1 = tdS.eq(5).text().trim();
-                    lessonResults.m2 = tdS.eq(6).text().trim();
-                } else {
+                    if (tdS.eq(1).text().trim() === '' &&
+                        tdS.eq(2).text().trim() === '' &&
+                        tdS.eq(3).text().trim() === '' &&
+                        tdS.eq(4).text().trim() === '' &&
+                        (tdS.eq(5).text().trim() !== '' || tdS.eq(6).text().trim()))
+                        lessonResults.isHalfYear = true;
+
+                    lessonResults.lesson = tdS.eq(0).text().trim();
+
+                    if (lessonResults.isHalfYear) {
+                        lessonResults.m1 = tdS.eq(5).text().trim();
+                        lessonResults.m2 = tdS.eq(6).text().trim();
+                    } else {
+                        lessonResults.m1 = tdS.eq(1).text().trim();
+                        lessonResults.m2 = tdS.eq(2).text().trim();
+                        lessonResults.m3 = tdS.eq(3).text().trim();
+                        lessonResults.m4 = tdS.eq(4).text().trim();
+                    }
+
+                    lessonResults.y = tdS.eq(7).text().trim();
+                    lessonResults.test = tdS.eq(8).text().trim();
+                    lessonResults.res = tdS.eq(9).text().trim();
+
+                    data.push(lessonResults);
+                }
+            else
+                for (var i = 0; i < trS.length; i++) {
+                    var lessonResults = {};
+
+                    lessonResults.lesson = '';
+                    lessonResults.m1 = '';
+                    lessonResults.m2 = '';
+                    lessonResults.m3 = '';
+                    lessonResults.m4 = '';
+                    lessonResults.y = '';
+                    lessonResults.res = '';
+                    lessonResults.test = '';
+                    lessonResults.isHalfYear = false;
+
+                    var tdS = trS.eq(i).find('td');
+
+
+                    lessonResults.lesson = tdS.eq(0).text().trim();
+
+
                     lessonResults.m1 = tdS.eq(1).text().trim();
                     lessonResults.m2 = tdS.eq(2).text().trim();
                     lessonResults.m3 = tdS.eq(3).text().trim();
                     lessonResults.m4 = tdS.eq(4).text().trim();
+
+                    lessonResults.test = tdS.eq(5).text().trim();
+                    lessonResults.res = tdS.eq(6).text().trim();
+
+                    data.push(lessonResults);
                 }
-
-                lessonResults.y = tdS.eq(7).text().trim();
-                lessonResults.test = tdS.eq(8).text().trim();
-                lessonResults.res = tdS.eq(9).text().trim();
-
-                data.push(lessonResults);
-            }
 
             return data;
         });
