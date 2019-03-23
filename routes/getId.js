@@ -26,6 +26,9 @@ router.get('/', function (req, res, next) {
                         //it is parent
 
                         var child_ids = [];
+                        var childNames = $('div.col-lg-6.col-md-12.col-sm-6.col-12').eq(0)
+                            .find('p.col-lg-7.col-md-8.col-sm-8.col-6');
+
                         for (var i = 0; i < buttons.length; i++) {
                             var elem = buttons.eq(i).attr('href');
                             data = String(elem).substring(String(elem).indexOf('?') + 1).split('&');
@@ -33,11 +36,13 @@ router.get('/', function (req, res, next) {
                                 "rooId": data[0].substring(6),
                                 "instituteId": data[1].substring(12),
                                 "departmentId": data[2].substring(13),
-                                "userId": data[3].substring(8)
+                                "userId": data[3].substring(8),
+                                "userName" : childNames.eq(i).text().trim()
                             });
                         }
                         let isParent = true;
-                        return {isParent, child_ids};
+                        let parentName = $('h1.text-center').eq(0).text().trim();
+                        return {isParent, parentName, child_ids};
                     } else {
                         //it is not parent
                         return "CHILD";
@@ -82,10 +87,12 @@ router.get('/', function (req, res, next) {
                             "rooId": data[0].substring(6),
                             "instituteId": data[1].substring(12),
                             "departmentId": data[2].substring(13),
-                            "userId": data[3].substring(8)
+                            "userId": data[3].substring(8),
+                            "userName": $('h1.text-center').eq(0).text().trim()
                         });
                         let isParent = false;
-                        return {isParent, child_ids};
+                        let parentName = null;
+                        return {isParent, parentName, child_ids};
                     } catch (e) {
                         return e.toString();
                     }
