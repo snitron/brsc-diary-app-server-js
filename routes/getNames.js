@@ -52,3 +52,5 @@ router.get('/', function (req, res, next) {
         await browser.close();
     })();
 });
+
+module.exports = router;
