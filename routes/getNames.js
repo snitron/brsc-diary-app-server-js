@@ -29,7 +29,8 @@ router.get('/', function (req, res, next) {
                 userNames.child_ids = [];
                 userNames.name = '';
 
-                if (option=== 'student') {
+
+                if (option === 'student') {
                     userNames.child_ids = null;
                     userNames.name = $('h1.text-center').eq(0).text().trim();
                 } else if (option === 'parent') {
