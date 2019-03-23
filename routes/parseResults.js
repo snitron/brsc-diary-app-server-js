@@ -69,21 +69,21 @@ router.get('/', function (req, res, next) {
                             (tdS.eq(5).text().trim() !== '' || tdS.eq(6).text().trim()))
                             lessonResults.isHalfYear = true;
 
-                        lessonResults.lesson = tdS.eq(0).text().trim();
+                        lessonResults.lesson = tdS.eq(0).text().trim().replace(/\n/g, '');
 
                         if (lessonResults.isHalfYear) {
-                            lessonResults.m1 = tdS.eq(5).text().trim();
-                            lessonResults.m2 = tdS.eq(6).text().trim();
+                            lessonResults.m1 = tdS.eq(5).text().trim().replace(/\n/g, '');
+                            lessonResults.m2 = tdS.eq(6).text().trim().replace(/\n/g, '');
                         } else {
-                            lessonResults.m1 = tdS.eq(1).text().trim();
-                            lessonResults.m2 = tdS.eq(2).text().trim();
-                            lessonResults.m3 = tdS.eq(3).text().trim();
-                            lessonResults.m4 = tdS.eq(4).text().trim();
+                            lessonResults.m1 = tdS.eq(1).text().trim().replace(/\n/g, '');
+                            lessonResults.m2 = tdS.eq(2).text().trim().replace(/\n/g, '');
+                            lessonResults.m3 = tdS.eq(3).text().trim().replace(/\n/g, '');
+                            lessonResults.m4 = tdS.eq(4).text().trim().replace(/\n/g, '');
                         }
 
-                        lessonResults.y = tdS.eq(7).text().trim();
-                        lessonResults.test = tdS.eq(8).text().trim();
-                        lessonResults.res = tdS.eq(9).text().trim();
+                        lessonResults.y = tdS.eq(7).text().trim().replace(/\n/g, '');
+                        lessonResults.test = tdS.eq(8).text().trim().replace(/\n/g, '');
+                        lessonResults.res = tdS.eq(9).text().trim().replace(/\n/g, '');
 
                         data.push(lessonResults);
                     }
@@ -103,15 +103,15 @@ router.get('/', function (req, res, next) {
 
                         var tdS = trS.eq(i).find('td');
 
-                        lessonResults.lesson = tdS.eq(0).text().trim();
+                        lessonResults.lesson = tdS.eq(0).text().trim().replace(/\n/g, '');
 
-                        lessonResults.m1 = tdS.eq(1).text().trim();
-                        lessonResults.m2 = tdS.eq(2).text().trim();
-                        lessonResults.m3 = tdS.eq(3).text().trim();
-                        lessonResults.m4 = tdS.eq(4).text().trim();
+                        lessonResults.m1 = tdS.eq(1).text().trim().replace(/\n/g, '');
+                        lessonResults.m2 = tdS.eq(2).text().trim().replace(/\n/g, '');
+                        lessonResults.m3 = tdS.eq(3).text().trim().replace(/\n/g, '');
+                        lessonResults.m4 = tdS.eq(4).text().trim().replace(/\n/g, '');
 
-                        lessonResults.test = tdS.eq(5).text().trim();
-                        lessonResults.res = tdS.eq(6).text().trim();
+                        lessonResults.test = tdS.eq(5).text().trim().replace(/\n/g, '');
+                        lessonResults.res = tdS.eq(6).text().trim().replace(/\n/g, '');
 
                         data.push(lessonResults);
                     }
