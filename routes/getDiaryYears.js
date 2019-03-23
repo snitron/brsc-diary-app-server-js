@@ -1,3 +1,14 @@
+/*
+    Скрипт для забора годов, которые доступны
+    для просмотра учеником.
+
+    Script for getting years, which can be
+    viewed by student.
+
+    Nitron Apps, 2019
+    SERVER VERSION: 1.0
+
+ */
 var express = require('express');
 var router = express.Router();
 

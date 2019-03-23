@@ -1,3 +1,16 @@
+/*
+    Скрипт для получения ID ученика и
+    инормации о его принадлежности к учебным
+    заведениям.
+
+    Script for getting user ID and info
+    of his school.
+
+    Nitron Apps, 2019
+    SERVER VERSION: 1.0
+
+ */
+
 var express = require('express');
 var router = express.Router();
 
@@ -45,28 +58,6 @@ router.get('/', function (req, res, next) {
                     } else {
                         //it is not parent
                         return "CHILD";
-
-                        /*
-                        var buttons = document.getElementsByClassName('a.btn.btn-sm.btn-primary');
-                        if (buttons.length !== 0)
-                            //it is parent
-
-                            var child_ids = [];
-                            for(var i = 0; i < buttons.length; i++){
-                                var elem = buttons[i].getAttribute('href');
-                                data = String(elem).substring(String(elem).indexOf('?') + 1).split('&');
-                                child_ids.push({
-                                    "rooId": data[0].substring(6),
-                                    "instituteId": data[1].substring(12),
-                                    "departmentId": data[2].substring(13),
-                                    "userId": data[3].substring(8)
-                                });
-                            }
-                            user_id = null;
-                        } else {
-                            var child_ids = null;
-                            var user_id = document.getElementsByClassName('p.col-lg-7.col-md-8.col-sm-8.col-6')[0].text();
-                        }*/
                     }
 
                 } catch

@@ -1,3 +1,14 @@
+/*
+    Скрипт для получения данных из дневнbка.
+
+    Script for getting data from diary.
+
+    Nitron Apps, 2019
+    SERVER VERSION: 1.0
+
+ */
+
+
 var express = require('express');
 var router = express.Router();
 

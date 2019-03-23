@@ -1,3 +1,16 @@
+/*
+    Скрипт для получения данных из табеля
+    итоговых оценок.
+
+    Script for getting data from results
+    table.
+
+    Nitron Apps, 2019
+    SERVER VERSION: 1.0
+
+ */
+
+
 var express = require('express');
 var router = express.Router();
 
