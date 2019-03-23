@@ -22,14 +22,14 @@ router.get('/', function (req, res, next) {
         await page.waitForSelector('#spinnerMessageSpan', {hidden: true});
         await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
 
-        const mainData = await page.evaluate(() => {
+        const mainData = await page.evaluate((option) => {
             try {
                 var userNames = {};
 
                 userNames.child_ids = [];
                 userNames.name = '';
 
-                if (option === 'student') {
+                if (option=== 'student') {
                     userNames.child_ids = null;
                     userNames.name = $('h1.text-center').eq(0).text().trim();
                 } else if (option === 'parent') {
@@ -46,7 +46,7 @@ router.get('/', function (req, res, next) {
             } catch (e) {
                 return e.toString();
             }
-        });
+        }, option);
         res.send(JSON.stringify(mainData));
 
         await browser.close();
