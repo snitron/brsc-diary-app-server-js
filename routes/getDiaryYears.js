@@ -35,7 +35,7 @@ router.get('/', function (req, res, next) {
         await page.waitForNavigation().catch(() => console.log("catched"));
         await page.goto('https://elschool.ru/users/diaries/details?rooId=' + rooId
             + '&instituteId=' + instituteId + '&departmentId=' + departmentId + '&pupilId=' + id, {waitUntil: ['networkidle2', 'domcontentloaded']});
-        await page.waitForSelector('#spinnerMessageSpan', {hidden: true});
+     //   await page.waitForSelector('#spinnerMessageSpan', {hidden: true});
         await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
 
         const mainData = await page.evaluate(() => {
