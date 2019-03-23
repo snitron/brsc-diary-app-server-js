@@ -32,6 +32,7 @@ router.get('/', function (req, res, next) {
 
                 var data = [];
 
+                /*
                 if ($('#result-marks-table').eq(0).find('thead').eq(0).find('tr').eq(0).find('td').length === 10) {
                     for (var i = 0; i < trS.length; i++) {
                         var lessonResults = {};
@@ -102,14 +103,14 @@ router.get('/', function (req, res, next) {
 
                         data.push(lessonResults);
                     }
-                }
-                return data;
+                }*/
+                return $('#result-marks-table').eq(0).find('thead').eq(0).find('tr').eq(0).find('td').length;
             } catch (e) {
                 return e.toString()
             }
         });
 
-        res.send(JSON.stringify(mainData));
+        res.send(mainData);
 
         await browser.close();
     })();
