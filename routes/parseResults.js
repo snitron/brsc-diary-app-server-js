@@ -28,12 +28,12 @@ router.get('/', function (req, res, next) {
 
         const mainData = await page.evaluate(() => {
             try {
-                var trS = $('#result-marks-table').find('tbody').eq(0).find('tr');
+                var trS = $('#result-marks-table').eq(0).find('tbody').eq(0).find('tr');
 
                 var data = [];
 
-                if ($('#result-marks-table').find('thead').eq(0).find('tr').eq(0).find('td').eq(5).text().trim() === '1 полугодие' ||
-                    $('#result-marks-table').find('thead').eq(0).find('tr').eq(0).find('td').eq(5).text().trim() === '1 ПОЛУГОДИЕ')
+                if ($('#result-marks-table').eq(0).find('thead').eq(0).find('tr').eq(0).find('td').eq(5).text().trim() === '1 полугодие' ||
+                    $('#result-marks-table').eq(0).find('thead').eq(0).find('tr').eq(0).find('td').eq(5).text().trim() === '1 ПОЛУГОДИЕ')
                 for (var i = 0; i < trS.length; i++) {
                     var lessonResults = {};
 
