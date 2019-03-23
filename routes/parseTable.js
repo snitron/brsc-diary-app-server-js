@@ -61,31 +61,31 @@ router.get('/', function (req, res, next) {
                     for (var j = 1; j < 10; j++) {
                         switch (j) {
                             case 1:
-                                lessonTable.lesson = tdS.eq(j).text().trim().replace(/\n/g, '');
+                                lessonTable.lesson = tdS.eq(j).text().trim().replace(/\n/g, '').replace(/ /g, '');
                                 break;
                             case 2:
-                                lessonTable.average_mark1 = tdS.eq(j).text().trim().replace(/\n/g, '');
+                                lessonTable.average_mark1 = tdS.eq(j).text().trim().replace(/\n/g, '').replace(/ /g, '');
                                 break;
                             case 3:
-                                lessonTable.m1 = tdS.eq(j).text().trim().replace(/\n/g, '');
+                                lessonTable.m1 = tdS.eq(j).text().trim().replace(/\n/g, '').replace(/ /g, '');
                                 break;
                             case 4:
-                                lessonTable.average_mark2 = tdS.eq(j).text().trim().replace(/\n/g, '');
+                                lessonTable.average_mark2 = tdS.eq(j).text().trim().replace(/\n/g, '').replace(/ /g, '');
                                 break;
                             case 5:
-                                lessonTable.m2 = tdS.eq(j).text().trim().replace(/\n/g, '');
+                                lessonTable.m2 = tdS.eq(j).text().trim().replace(/\n/g, '').replace(/ /g, '');
                                 break;
                             case 6:
-                                lessonTable.average_mark3 = tdS.eq(j).text().trim().replace(/\n/g, '');
+                                lessonTable.average_mark3 = tdS.eq(j).text().trim().replace(/\n/g, '').replace(/ /g, '');
                                 break;
                             case 7:
-                                lessonTable.m3 = tdS.eq(j).text().trim().replace(/\n/g, '');
+                                lessonTable.m3 = tdS.eq(j).text().trim().replace(/\n/g, '').replace(/ /g, '');
                                 break;
                             case 8:
-                                lessonTable.average_mark4 = tdS.eq(j).text().trim().replace(/\n/g, '');
+                                lessonTable.average_mark4 = tdS.eq(j).text().trim().replace(/\n/g, '').replace(/ /g, '');
                                 break;
                             case 9:
-                                lessonTable.m4 = tdS.eq(j).text().trim().replace(/\n/g, '');
+                                lessonTable.m4 = tdS.eq(j).text().trim().replace(/\n/g, '').replace(/ /g, '');
                                 break;
                             default:
                                 break;

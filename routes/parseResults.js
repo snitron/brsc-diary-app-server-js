@@ -69,21 +69,21 @@ router.get('/', function (req, res, next) {
                             (tdS.eq(5).text().trim() !== '' || tdS.eq(6).text().trim()))
                             lessonResults.isHalfYear = true;
 
-                        lessonResults.lesson = tdS.eq(0).text().trim().replace(/\n/g, '');
+                        lessonResults.lesson = tdS.eq(0).text().trim().replace(/\n/g, '').replace(/ /g, '');
 
                         if (lessonResults.isHalfYear) {
-                            lessonResults.m1 = tdS.eq(5).text().trim().replace(/\n/g, '');
-                            lessonResults.m2 = tdS.eq(6).text().trim().replace(/\n/g, '');
+                            lessonResults.m1 = tdS.eq(5).text().trim().replace(/\n/g, '').replace(/ /g, '');
+                            lessonResults.m2 = tdS.eq(6).text().trim().replace(/\n/g, '').replace(/ /g, '');
                         } else {
-                            lessonResults.m1 = tdS.eq(1).text().trim().replace(/\n/g, '');
-                            lessonResults.m2 = tdS.eq(2).text().trim().replace(/\n/g, '');
-                            lessonResults.m3 = tdS.eq(3).text().trim().replace(/\n/g, '');
-                            lessonResults.m4 = tdS.eq(4).text().trim().replace(/\n/g, '');
+                            lessonResults.m1 = tdS.eq(1).text().trim().replace(/\n/g, '').replace(/ /g, '');
+                            lessonResults.m2 = tdS.eq(2).text().trim().replace(/\n/g, '').replace(/ /g, '');
+                            lessonResults.m3 = tdS.eq(3).text().trim().replace(/\n/g, '').replace(/ /g, '');
+                            lessonResults.m4 = tdS.eq(4).text().trim().replace(/\n/g, '').replace(/ /g, '');
                         }
 
-                        lessonResults.y = tdS.eq(7).text().trim().replace(/\n/g, '');
-                        lessonResults.test = tdS.eq(8).text().trim().replace(/\n/g, '');
-                        lessonResults.res = tdS.eq(9).text().trim().replace(/\n/g, '');
+                        lessonResults.y = tdS.eq(7).text().trim().replace(/\n/g, '').replace(/ /g, '');
+                        lessonResults.test = tdS.eq(8).text().trim().replace(/\n/g, '').replace(/ /g, '');
+                        lessonResults.res = tdS.eq(9).text().trim().replace(/\n/g, '').replace(/ /g, '');
 
                         data.push(lessonResults);
                     }
@@ -105,13 +105,13 @@ router.get('/', function (req, res, next) {
 
                         lessonResults.lesson = tdS.eq(0).text().trim().replace(/\n/g, '');
 
-                        lessonResults.m1 = tdS.eq(1).text().trim().replace(/\n/g, '');
-                        lessonResults.m2 = tdS.eq(2).text().trim().replace(/\n/g, '');
-                        lessonResults.m3 = tdS.eq(3).text().trim().replace(/\n/g, '');
-                        lessonResults.m4 = tdS.eq(4).text().trim().replace(/\n/g, '');
+                        lessonResults.m1 = tdS.eq(1).text().trim().replace(/\n/g, '').replace(/ /g, '');
+                        lessonResults.m2 = tdS.eq(2).text().trim().replace(/\n/g, '').replace(/ /g, '');
+                        lessonResults.m3 = tdS.eq(3).text().trim().replace(/\n/g, '').replace(/ /g, '');
+                        lessonResults.m4 = tdS.eq(4).text().trim().replace(/\n/g, '').replace(/ /g, '');
 
-                        lessonResults.test = tdS.eq(5).text().trim().replace(/\n/g, '');
-                        lessonResults.res = tdS.eq(6).text().trim().replace(/\n/g, '');
+                        lessonResults.test = tdS.eq(5).text().trim().replace(/\n/g, '').replace(/ /g, '');
+                        lessonResults.res = tdS.eq(6).text().trim().replace(/\n/g, '').replace(/ /g, '');
 
                         data.push(lessonResults);
                     }
