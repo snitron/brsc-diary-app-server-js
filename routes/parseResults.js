@@ -104,7 +104,7 @@ router.get('/', function (req, res, next) {
                         data.push(lessonResults);
                     }
                 }*/
-                return String($('#result-marks-table').find('thead').eq(0).find('tr').eq(0).find('td').length);
+                return String($('#result-marks-table').children().find('tr').eq(0).find('td').length);
             } catch (e) {
                 return e.toString()
             }
