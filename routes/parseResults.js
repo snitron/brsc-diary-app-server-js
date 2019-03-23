@@ -32,8 +32,7 @@ router.get('/', function (req, res, next) {
 
                 var data = [];
 
-                /*
-                if ($('#result-marks-table').eq(0).find('thead').eq(0).find('tr').eq(0).find('td').length === 10) {
+                if ($('#result-marks-table').eq(0).find('tbody').eq(0).find('tr').eq(0).find('td').length === 10) {
                     for (var i = 0; i < trS.length; i++) {
                         var lessonResults = {};
 
@@ -103,8 +102,9 @@ router.get('/', function (req, res, next) {
 
                         data.push(lessonResults);
                     }
-                }*/
-                return String($('#result-marks-table').eq(0).find('tbody').eq(0).find('tr').eq(0).find('td').length);
+                }
+
+                return data;
             } catch (e) {
                 return e.toString()
             }
