@@ -32,7 +32,8 @@ router.get('/', function (req, res, next) {
 
                 var data = [];
 
-                if ($('#result-marks-table').find('thead').eq(0).find('tr').eq(0).find('td').eq(5).text() === '1 полугодие')
+                if ($('#result-marks-table').find('thead').eq(0).find('tr').eq(0).find('td').eq(5).text().trim() === '1 полугодие' ||
+                    $('#result-marks-table').find('thead').eq(0).find('tr').eq(0).find('td').eq(5).text().trim() === '1 ПОЛУГОДИЕ')
                 for (var i = 0; i < trS.length; i++) {
                     var lessonResults = {};
 
