@@ -33,7 +33,7 @@ router.get('/', function (req, res, next) {
 
             const user = await page.evaluate(() => {
                 try {
-                    var buttons = $('a.btn.btn-sm.btn-primary');
+                    const buttons = $('a.btn.btn-sm.btn-primary');
                     if (buttons.length > 1) {
                         //it is parent
 

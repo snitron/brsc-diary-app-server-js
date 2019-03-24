@@ -42,8 +42,8 @@ router.get('/', function (req, res, next) {
         const mainData = await page.evaluate(() => {
 
             try {
-                var elements = $('table.table-bordered.DiaryTable.d-none.d-md-table:not([lesson])');
-                var dayNames = $('h3.weekDayDiary');
+                const elements = $('table.table-bordered.DiaryTable.d-none.d-md-table:not([lesson])');
+                const dayNames = $('h3.weekDayDiary');
 
                 var days = [];
                 for (var i = 0; i < elements.length; i++) {

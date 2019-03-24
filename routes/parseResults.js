@@ -41,7 +41,7 @@ router.get('/', function (req, res, next) {
 
         const mainData = await page.evaluate(() => {
             try {
-                var trS = $('#result-marks-table').eq(0).find('tbody').eq(0).find('tr');
+                const trS = $('#result-marks-table').eq(0).find('tbody').eq(0).find('tr');
 
                 var data = [];
 

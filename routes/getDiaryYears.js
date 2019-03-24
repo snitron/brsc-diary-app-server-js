@@ -40,7 +40,7 @@ router.get('/', function (req, res, next) {
 
         const mainData = await page.evaluate(() => {
             try {
-                var data = $('option[model-department-id]');
+                const data = $('option[model-department-id]');
 
                 var idS = [];
                 for (var i = 0; i < data.length; i++) {
