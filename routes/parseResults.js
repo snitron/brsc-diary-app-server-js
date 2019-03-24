@@ -71,7 +71,7 @@ router.get('/', function (req, res, next) {
                                     (tdS.eq(5).text().trim() !== '' || tdS.eq(6).text().trim()))
                                     lessonResults.isHalfYear = true;
 
-                                lessonResults.lesson = tdS.eq(0).text().trim();
+                                lessonResults.lesson = tdS.eq(0).text();
 
                                 if (lessonResults.isHalfYear) {
                                     lessonResults.m1 = tdS.eq(5).text().trim();
@@ -105,7 +105,7 @@ router.get('/', function (req, res, next) {
 
                                 var tdS = trS.eq(i).find('td');
 
-                                lessonResults.lesson = tdS.eq(0).text().trim();
+                                lessonResults.lesson = tdS.eq(0).text();
 
                                 lessonResults.m1 = tdS.eq(1).text().trim();
                                 lessonResults.m2 = tdS.eq(2).text().trim();
