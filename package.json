@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
-  },
+    "start": "node --gc_global --optimize_for_size --max_old_space_size=460 --use_idle_notification --always_compact --gc_interval=100 --expose_gc ./bin/www"
+},
   "dependencies": {
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
