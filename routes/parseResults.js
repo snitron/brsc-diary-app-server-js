@@ -33,7 +33,7 @@ router.get('/', function (req, res, next) {
         await page.type('#login', login);
         await page.type('#password', password);
         await page.click('#sub-btn');
-        await page.waitForNavigation().catch(() => console.log("catched"));
+      //  await page.waitForNavigation().catch(() => console.log("catched"));
         await page.goto('https://elschool.ru/users/diaries/results?rooId=' + rooId
             + '&instituteId=' + instituteId + '&departmentId=' + departmentId + '&pupilId=' + id, {waitUntil: ['networkidle2', 'domcontentloaded']});
      //   await page.waitForSelector('#spinnerMessageSpan', {hidden: true});
