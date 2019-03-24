@@ -33,7 +33,7 @@ router.get('/', function (req, res, next) {
         await page.type('#login', login);
         await page.type('#password', password);
         await page.click('#sub-btn');
-        await page.waitForNavigation().catch(() => console.log("catched"));
+        await page.waitForNavigation().catch();
         await page.goto('https://elschool.ru/users/diaries/details?rooId=' + rooId
             + '&instituteId=' + instituteId + '&departmentId=' + departmentId + '&pupilId=' + id + '&year=' + year + '&week=' + week, {waitUntil: ['networkidle2', 'domcontentloaded']});
        // await page.waitForSelector('#spinnerMessageSpan', {hidden: true});
@@ -101,9 +101,10 @@ router.get('/', function (req, res, next) {
                 return e.toString();
             }
         });
+        await browser.close();
         res.send(JSON.stringify(mainData));
 
-        await browser.close();
+
     })();
 });
 

@@ -100,10 +100,9 @@ router.get('/', function (req, res, next) {
             }
         });
 
-
+        await browser.close();
         res.send(JSON.stringify(mainData));
 
-        await browser.close();
     })();
 });
 

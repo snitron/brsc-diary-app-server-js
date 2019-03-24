@@ -57,9 +57,9 @@ router.get('/', function (req, res, next) {
                 return e.toString();
             }
         });
+        await browser.close();
         res.send(JSON.stringify(mainData));
 
-        await browser.close();
     })();
 });
 
