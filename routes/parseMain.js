@@ -64,7 +64,7 @@ router.get('/', function (req, res, next) {
                     for (var j = 0; j < trS.length; j += 2) {
                         if (trS.eq(j).find('td').eq(3).find('h2').length !== 0)
                             if (trS.eq(j).find('td').eq(3).find('h2').eq(0).text() === 'Нет занятий') {
-                                dayShedule.count = 1;
+                                dayShedule.count = 3;
                                 dayShedule.isWeekend = true;
                                 continue;
                             }
