@@ -17,7 +17,7 @@ const path = require('path');
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-    res.sendFile(path.join(__dirname + '/htmls/policy.html'))
+    res.sendFile(path.join(__dirname + '/policy.html'))
 });
 
 
