@@ -21,6 +21,7 @@ router.get('/', function (req, res, next) {
     var rooId = req.query.rooId;
     var instituteId = req.query.instituteId;
     var departmentId = req.query.departmentId;
+    var catched = false;
 
     const puppeteer = require('puppeteer');
 
@@ -34,6 +35,7 @@ router.get('/', function (req, res, next) {
         await page.click('#sub-btn');
         await page.waitForNavigation({waitUntil: 'load', timeout: 10000}).catch(
             async () => {
+                catched = true;
                 await page.goto('https://elschool.ru/users/diaries/details?rooId=' + rooId
                     + '&instituteId=' + instituteId + '&departmentId=' + departmentId + '&pupilId=' + id, {waitUntil: ['networkidle2', 'domcontentloaded']});
                 await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
@@ -61,35 +63,37 @@ router.get('/', function (req, res, next) {
                 await browser.close();
                 res.send(JSON.stringify(mainData));
             });
-      await page.goto('https://elschool.ru/users/diaries/details?rooId=' + rooId
-            + '&instituteId=' + instituteId + '&departmentId=' + departmentId + '&pupilId=' + id, {waitUntil: ['networkidle2', 'domcontentloaded']});
-        //   await page.waitForSelector('#spinnerMessageSpan', {hidden: true});
-        await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
+        if(!catched) {
+            await page.goto('https://elschool.ru/users/diaries/details?rooId=' + rooId
+                + '&instituteId=' + instituteId + '&departmentId=' + departmentId + '&pupilId=' + id, {waitUntil: ['networkidle2', 'domcontentloaded']});
+            //   await page.waitForSelector('#spinnerMessageSpan', {hidden: true});
+            await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
 
-        const mainData = await page.evaluate(() => {
-            try {
-                const data = $('option[model-department-id]');
+            const mainData = await page.evaluate(() => {
+                try {
+                    const data = $('option[model-department-id]');
 
-                var idS = [];
-                for (var i = 0; i < data.length; i++) {
-                    idS.push({
-                        'name': data.eq(i).text(),
-                        'departmentId': data.eq(i).attr('model-department-id'),
-                        'yearStart': data.eq(i).attr('model-start-year'),
-                        'yearEnd': data.eq(i).attr('model-end-year')
-                    })
+                    var idS = [];
+                    for (var i = 0; i < data.length; i++) {
+                        idS.push({
+                            'name': data.eq(i).text(),
+                            'departmentId': data.eq(i).attr('model-department-id'),
+                            'yearStart': data.eq(i).attr('model-start-year'),
+                            'yearEnd': data.eq(i).attr('model-end-year')
+                        })
+                    }
+
+                    return idS;
+                } catch (e) {
+                    return e.toString();
                 }
+            });
 
-                return idS;
-            } catch (e) {
-                return e.toString();
-            }
-        });
+            await page.close();
+            await browser.close();
+            res.send(JSON.stringify(mainData));
 
-        await page.close();
-        await browser.close();
-        res.send(JSON.stringify(mainData));
-
+        }
     })();
 });
 
