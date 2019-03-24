@@ -32,10 +32,38 @@ router.get('/', function (req, res, next) {
         await page.type('#login', login);
         await page.type('#password', password);
         await page.click('#sub-btn');
-        await page.waitForNavigation({waitUntil: 'load', timeout: 10000}).catch(() => console.log("catched"));
-        await page.goto('https://elschool.ru/users/diaries/details?rooId=' + rooId
+        await page.waitForNavigation({waitUntil: 'load', timeout: 10000}).catch(
+            async () => {
+                await page.goto('https://elschool.ru/users/diaries/details?rooId=' + rooId
+                    + '&instituteId=' + instituteId + '&departmentId=' + departmentId + '&pupilId=' + id, {waitUntil: ['networkidle2', 'domcontentloaded']});
+                await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
+                const mainData = await page.evaluate(() => {
+                    try {
+                        const data = $('option[model-department-id]');
+
+                        var idS = [];
+                        for (var i = 0; i < data.length; i++) {
+                            idS.push({
+                                'name': data.eq(i).text(),
+                                'departmentId': data.eq(i).attr('model-department-id'),
+                                'yearStart': data.eq(i).attr('model-start-year'),
+                                'yearEnd': data.eq(i).attr('model-end-year')
+                            })
+                        }
+
+                        return idS;
+                    } catch (e) {
+                        return e.toString();
+                    }
+                });
+
+                await page.close();
+                await browser.close();
+                res.send(JSON.stringify(mainData));
+            });
+      await page.goto('https://elschool.ru/users/diaries/details?rooId=' + rooId
             + '&instituteId=' + instituteId + '&departmentId=' + departmentId + '&pupilId=' + id, {waitUntil: ['networkidle2', 'domcontentloaded']});
-     //   await page.waitForSelector('#spinnerMessageSpan', {hidden: true});
+        //   await page.waitForSelector('#spinnerMessageSpan', {hidden: true});
         await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
 
         const mainData = await page.evaluate(() => {
