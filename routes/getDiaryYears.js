@@ -15,12 +15,8 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-    var id = req.query.id;
     var login = req.query.login;
     var password = req.query.password;
-    var rooId = req.query.rooId;
-    var instituteId = req.query.instituteId;
-    var departmentId = req.query.departmentId;
     var catched = false;
 
     const puppeteer = require('puppeteer');
@@ -36,8 +32,7 @@ router.get('/', function (req, res, next) {
         await page.waitForNavigation({waitUntil: 'load', timeout: 10000}).catch(
             async () => {
                 catched = true;
-                await page.goto('https://elschool.ru/users/diaries/details?rooId=' + rooId
-                    + '&instituteId=' + instituteId + '&departmentId=' + departmentId + '&pupilId=' + id, {waitUntil: ['networkidle2', 'domcontentloaded']});
+                await page.goto('https://elschool.ru/users/diaries/', {waitUntil: ['networkidle2', 'domcontentloaded']});
                 await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
                 const mainData = await page.evaluate(() => {
                     try {
@@ -64,8 +59,7 @@ router.get('/', function (req, res, next) {
                 res.send(JSON.stringify(mainData));
             });
         if(!catched) {
-            await page.goto('https://elschool.ru/users/diaries/details?rooId=' + rooId
-                + '&instituteId=' + instituteId + '&departmentId=' + departmentId + '&pupilId=' + id, {waitUntil: ['networkidle2', 'domcontentloaded']});
+            await page.goto('https://elschool.ru/users/diaries/details', {waitUntil: ['networkidle2', 'domcontentloaded']});
             //   await page.waitForSelector('#spinnerMessageSpan', {hidden: true});
             await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
 
