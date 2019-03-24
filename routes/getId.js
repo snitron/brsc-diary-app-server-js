@@ -91,7 +91,8 @@ router.get('/', function (req, res, next) {
             } else {
                 res.send(JSON.stringify(user));
             }
-            await browser.close()
+            await page.close();
+            await browser.close();
         }
     )();
 });

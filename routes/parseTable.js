@@ -99,7 +99,7 @@ router.get('/', function (req, res, next) {
                 return e.toString()
             }
         });
-
+        await page.close();
         await browser.close();
         res.send(JSON.stringify(mainData));
 
