@@ -27,7 +27,7 @@ router.get('/', function (req, res, next) {
             await page.type('#login', login);
             await page.type('#password', password);
             await page.click('#sub-btn');
-            await page.waitForNavigation().catch(() => console.log("catched"));
+            await page.waitForNavigation({waitUntil: 'load', timeout: 10000}).catch(() => console.log("catched"));
             await page.goto('https://elschool.ru/privateoffice', {waitUntil: 'load', timeout: 0});
             await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
 
