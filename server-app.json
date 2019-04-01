@@ -1,0 +1,9 @@
+{
+    "apps": [
+        {
+            "name": "brsc-diary-app-server",
+            "script": "npm",
+            "args" : "start"
+        }
+    ]
+}
