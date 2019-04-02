@@ -7,19 +7,28 @@
 var app = require('../app');
 var debug = require('debug')('brsc-diary-app-server:server');
 var http = require('http');
+var https = require('https');
+var fs = require('fs');
+var path = require('path');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+//var port = normalizePort(process.env.PORT || '3000');
+var port = 3443;
 app.set('port', port);
 
+const httpOptions = {
+  cert: fs.readFileSync(path.join(__dirname, 'ssl', 'certificate.crt')),
+  key: fs.readFileSync(path.join(__dirname, 'ssl', 'key.key'))
+};
+
 /**
- * Create HTTP server.
+ * Create HTTPS server.
  */
 
-var server = http.createServer(app);
+var server = https.createServer(httpOptions);
 
 /**
  * Listen on provided port, on all network interfaces.
