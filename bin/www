@@ -15,8 +15,8 @@ var path = require('path');
  * Get port from environment and store in Express.
  */
 
-//var port = normalizePort(process.env.PORT || '3000');
-var port = 3443;
+var port = normalizePort(process.env.PORT || '3000');
+//var port = 3443;
 app.set('port', port);
 
 const httpOptions = {
@@ -28,7 +28,8 @@ const httpOptions = {
  * Create HTTPS server.
  */
 
-var server = https.createServer(httpOptions);
+//var server = https.createServer(httpOptions);
+var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.

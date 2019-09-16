@@ -10,6 +10,7 @@ var getDiaryYears = require('./routes/getDiaryYears');
 var getTable = require('./routes/parseTable');
 var getResult = require('./routes/parseResults');
 var policyRouter = require('./routes/policy');
+var getBalance = require('./routes/getBalance');
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use('/getDiaryYears', getDiaryYears);
 app.use('/parseTable', getTable);
 app.use('/parseResults', getResult);
 app.use('/policy', policyRouter);
+app.use('/getBalance', getBalance);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

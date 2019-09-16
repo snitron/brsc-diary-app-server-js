@@ -16,7 +16,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-    if (req.get('User-Agent') === 'Nitron Apps BRSC Diary Http Connector') {
+    if (req.get('User-Agent') !== 'Nitron Apps BRSC Diary Http Connector') {
         var login = req.query.login;
         var password = req.query.password;
         var catched = false;
