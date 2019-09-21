@@ -30,13 +30,13 @@ const httpOptions = {
 
 //var server = https.createServer(httpOptions);
 var server = http.createServer(app);
-
+var hostname = "localhost";
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+server.listen(port, hostname);
 server.on('error', onError);
 server.on('listening', onListening);
 
